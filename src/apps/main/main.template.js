@@ -1,4 +1,6 @@
 import styles from './main.css'; 
+debugger
+console.log(styles);
 module.exports = `
 <div>
     <ul class="editorList-ul">

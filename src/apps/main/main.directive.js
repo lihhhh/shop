@@ -1,16 +1,38 @@
 import angular from 'angular';
-var tpl = require('./main.template.js');
+import styles from './main.css';
 
 var shopApp = angular.module('shopApp');
 
 shopApp.directive('rdMain',[function(){
 	return {
 		restrict : 'AE',
-		template : tpl,
+		template : `
+			<div>
+			    <div class="left-menu pull-left">
+				    <ul class="editorList-ul">
+				        <li ng-repeat="item in editorList track by $index"  ng-click="editorTitleClick(item)">{{item.name}}</li>
+				    </ul>
+			    </div>
+			    <div class="center-phone pull-left">
+				    <div class='phone-style'>
+					    <div class="phone-header"></div>
+					    <div class="phone-status"></div>
+					    <div class="phone-main">
+						    <ul>
+							    <li ng-repeat="editor in editorDrapnum track by $index">
+								    <render editor="editor"></render>
+							    </li>
+						    </ul>
+					    </div>
+				    </div>
+			    </div>
+			</div>
+		`,
 		link : function($scope){
-			$scope.editorList = [{
-	                'name': '111',
-	                'type': 'a1'
+			$scope.editorList = [
+				{
+	                'name': '标题',
+	                'type': 'rd-title'
 	            },
 	            {
 	                'name': '222',
@@ -55,6 +77,13 @@ shopApp.directive('rdMain',[function(){
 	                'type': 'a1'
 	            }
 	        ];
+	        $scope.editorDrapnum = [];
+
+	        //添加
+            $scope.editorTitleClick = function(item) {
+                // $scope.editorNum = $scope.editorNum + 1;
+                $scope.editorDrapnum.push(item);
+            }
 		}
 	};
 }])

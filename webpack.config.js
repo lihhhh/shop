@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MinifyPlugin = require("babel-minify-webpack-plugin");
 var fs = require('fs');
 
 module.exports = function(cfg){
@@ -29,6 +30,14 @@ module.exports = function(cfg){
             },{ 
                 test: /\.css$/, 
                 use: ['style-loader', 'css-loader']
+            },{ 
+                test: /\.(jpg|png|jpeg|gif)$/, 
+                use: {
+                    loader:'file-loader',
+                    options: {
+                        name:'images/[hash].[ext]'
+                    }
+                }
             },]
         },
         devServer: {
@@ -46,7 +55,9 @@ module.exports = function(cfg){
             new HtmlWebpackPlugin({
                 template: './src/index.html',
                 filename: 'index.html'
-            })
+            }),
+            // 代码压缩
+            // new MinifyPlugin()
         ]
     };
 }

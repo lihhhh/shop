@@ -6,16 +6,25 @@ html,body {
 	margin: 0;
 }
 .main-box {
-	width: 1000px;
+	width: 1200px;
 	height: 900px;
 	/*border: 1px solid #ccc;*/
 	margin: 0 auto;
 }
 #header {
+    position: fixed;
+    top: 0;
+
+    margin: 0 auto;
     width: 1200px;
     height: 52px;
-    background-color: #F3F3F3;
+    background-color: white;
     margin-bottom: 20px;
+    height: 62px;
+}
+#header .header-box {
+    background-color: #F3F3F3;
+    height: 52px;
     padding: 12px;
 }    
 .header-left span {
@@ -29,4 +38,52 @@ html,body {
 .header-right span {
     color: #aaa;
     font-size: 12px;
+}
+
+
+
+.diy-actions-submit {
+    position: fixed;
+    z-index: 999;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 5px 0;
+    left: 0;
+    background-color: rgba(43,54,67,0.8);
+}
+.btn {
+    position: relative;
+    display: inline-block;
+    padding: 0 12px;
+    height: 30px;
+    line-height: 28px;
+    font-size: 12px;
+    text-align: center;
+    cursor: pointer;
+    color: #333;
+    background-color: #fff;
+    border-radiu0s: 0px;
+    border: 1px solid #ccc;
+    vertical-align: baseline;
+    margin-top: 1px;
+    margin-bottom: 2px;
+    border-radius: 3px;
+}
+.btn.btn-primary {
+    background-color: #428bca;
+    border-color: #357ebd;
+    color: white;
+}
+
+.btn.btn-success {
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+    color: white;
+}
+
+.btn.btn-danger {
+    background-color: #d9534f;
+    border-color: #d43f3a;
+    color: white;
 }

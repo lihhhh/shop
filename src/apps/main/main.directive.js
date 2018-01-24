@@ -1,89 +1,140 @@
 import angular from 'angular';
 import styles from './main.css';
+import _ from 'lodash';
+import img from './../../static/add.png';
+
 
 var shopApp = angular.module('shopApp');
 
-shopApp.directive('rdMain',[function(){
+shopApp.directive('rdMain',['rsMain',function(rsMain){
 	return {
 		restrict : 'AE',
 		template : `
-			<div>
+			<div class="rd-main-box">
 			    <div class="left-menu pull-left">
-				    <ul class="editorList-ul">
-				        <li ng-repeat="item in editorList track by $index"  ng-click="editorTitleClick(item)">{{item.name}}</li>
+				    <div class="left-menu-header">
+					    <span>添加模块</span>
+				    </div>
+				    <ul class="editorList-ul clearfix">
+				        <li ng-repeat="item in editorList track by $index"  ng-click="editorTitleClick(item,$index)">
+					        <span>{{item.name}}</span>
+					        <img src="${img}" width=14 height=14 alt="" />
+				        </li>
 				    </ul>
 			    </div>
 			    <div class="center-phone pull-left">
 				    <div class='phone-style'>
 					    <div class="phone-header"></div>
-					    <div class="phone-status"></div>
+					    <div class="phone-status"><span class="phone-status-title">微信首页</span></div>
 					    <div class="phone-main">
 						    <ul>
-							    <li ng-repeat="editor in editorDrapnum track by $index">
-								    <render editor="editor"></render>
+							    <li ng-repeat="editor in editors track by $index">
+								    <render editor="editor" editors="editors"></render>
 							    </li>
 						    </ul>
 					    </div>
 				    </div>
+			    </div>
+			    <div class="diy-actions-submit">
+			        <a href="javascript:;" class="btn btn-primary" id="j-savePage" ng-click="saveJson()">保存</a>
+			        <a href="javascript:;" class="btn btn-success" id="j-saveAndPrvPage">保存并预览</a>
+			        <a href="javascript:;" class="btn btn-danger" id="j-resetToInit">还原到初始模板</a>
+			        <a href="javascript:scroll(0,0)" id="j-gotop" class="gotop" title="回到顶部" style="display: inline;"></a>
 			    </div>
 			</div>
 		`,
 		link : function($scope){
 			$scope.editorList = [
 				{
+	                'name': '富文本',
+	                'type': 'a1'
+	            },
+				{
 	                'name': '标题',
 	                'type': 'rd-title'
 	            },
 	            {
-	                'name': '222',
+	                'name': '商品',
 	                'type': 'a1'
 	            },
 	            {
-	                'name': '333',
-	                'type': 'a1'
-	            },
-	            {
-	                'name': '444',
+	                'name': '商品列表',
 	                'type': 'a1'
 	            },{
-	                'name': '111',
+	                'name': '商品搜索',
 	                'type': 'a1'
 	            },
 	            {
-	                'name': '222',
+	                'name': '文本导航',
 	                'type': 'a1'
 	            },
 	            {
-	                'name': '333',
+	                'name': '图片导航',
 	                'type': 'a1'
 	            },
 	            {
-	                'name': '444',
+	                'name': '图片广告',
 	                'type': 'a1'
 	            },{
-	                'name': '111',
+	                'name': '分割线',
 	                'type': 'a1'
 	            },
 	            {
-	                'name': '222',
+	                'name': '辅助空白',
 	                'type': 'a1'
 	            },
 	            {
-	                'name': '333',
+	                'name': '顶部菜单',
 	                'type': 'a1'
 	            },
 	            {
-	                'name': 'hhh',
+	                'name': '测试',
+	                'type': 'a1'
+	            },
+	            {
+	                'name': '测试',
+	                'type': 'a1'
+	            },
+	            {
+	                'name': '测试',
+	                'type': 'a1'
+	            },
+	            {
+	                'name': '测试',
+	                'type': 'a1'
+	            },
+	            {
+	                'name': '测试',
 	                'type': 'a1'
 	            }
 	        ];
-	        $scope.editorDrapnum = [];
+	        $scope.editors = [];
 
 	        //添加
-            $scope.editorTitleClick = function(item) {
-                // $scope.editorNum = $scope.editorNum + 1;
-                $scope.editorDrapnum.push(item);
+            $scope.editorTitleClick = function(item,idx) {
+            	// item = _.cloneDeep(item);
+            	// item.name+=idx;
+                $scope.editors.push(_.cloneDeep(item));
             }
+
+            rsMain.getJson().then(function(_d){
+        		console.log(_d);
+        		var json = JSON.parse(_d.data.json);
+        		console.log('json:',json);
+        		$scope.editors = JSON.parse(json.editors);
+        	});
+
+
+            // 保存json数据
+            $scope.saveJson = function(){
+            	var params = {
+            		editors:JSON.stringify($scope.editors)
+            	};
+            	rsMain.saveJson(params).then(function(_d){
+            		console.log(_d);
+            		alert('保存成功!');
+            	});
+            };
 		}
 	};
 }])

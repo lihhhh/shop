@@ -7,26 +7,79 @@ ul {
     list-style: none;
 }
 
+.rd-main-box {
+    margin-top: 80px;
+}
+
 .left-menu {
-    width: 200px;  
+    position: fixed;
+    /*margin-top: 80px;*/
+    width: 145px; 
+    overflow: hidden;
+    border-radius: 8px; 
+}
+
+.left-menu-header {
+    height: 35px;
+    line-height: 35px;
+    font-size: 14px;
+    color: white;
+    padding-left: 12px;
+    background: #666;
 }
 
 .editorList-ul {
     width: 100%;
-    height: 430px;
-    background-color: #f1f1f1;
+    padding-top: 10px;
+    background-color: #f3f3f3;
+    font-size: 12px;
+    user-select:none;
 }
 
 .editorList-ul li {
-    width: 97px;
-    height: 70px;
-    line-height: 70px;
+    position: relative;
+    cursor: pointer;
+    width: 57px;
+    height: 42px;
+    margin: 5px 0 15px 10px;
     text-align: center;
     border: 1px solid grey;
+    color: #666;
     float: left;
+    border-radius: 3px;
+    border: 1px solid #e0e0e0;
+    background: white;
+    padding: 0 15px;
+    /*padding: 0 11px;*/
+}
+
+.editorList-ul li span {
+    vertical-align: middle;
+    display: table-cell;
+    margin-left: 11px;
+    width: 24px;
+    height: 42px;
+}
+
+.editorList-ul li img {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    display: none;
+}
+
+.editorList-ul li:hover {
+    background: #fff;
+    color: #666;
+    border: 1px solid #ff9900;
+}
+
+.editorList-ul li:hover img {
+    display: block;
 }
 
 .phone-style {
+    margin-left: 155px;
     width: 345px;
     height: 600px;
     border: 1px solid #ccc;
@@ -44,6 +97,14 @@ ul {
 }
 
 .phone-status {
+    margin: 0 12px;
     height: 63px;
+    text-align: center;
+    padding-top: 29px;
     background-image: url('../../static/phone.png');
+}
+
+.phone-status-title {
+    color: #fff;
+    font-size: 18px;
 }

@@ -7,13 +7,12 @@ shopApp.directive('render',['$compile',function($compile){
 		restrict: 'AE',
 		transclude:true,
 		scope:{
-			editor:'='
+			editor:'=',
+			editors:'='
 		},
 		link: function($scope,$ele,$attr){
-			debugger
 			if($scope.editor.type){
-				debugger
-				var el = '<'+$scope.editor.type+' editor="editor"></'+$scope.editor.type+'>';
+				var el = '<'+$scope.editor.type+' editor="editor" editors="editors"></'+$scope.editor.type+'>';
 				el = $compile(el)($scope);
 
 				$ele.html('');

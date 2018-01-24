@@ -1,3 +1,8 @@
+import styles from './main.css'; 
 module.exports = `
-<div>753</div>
+<div>
+    <ul class="editorList-ul">
+        <li ng-repeat="item in editorList track by $index">{{item.name}}</li>
+    </ul>
+</div>
 `

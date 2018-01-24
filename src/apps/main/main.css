@@ -1,0 +1,28 @@
+.test {
+	background: red;
+	height: 200px;
+	width: 200px;
+}
+*{
+	margin: 0;
+	padding: 0;
+}
+ul {
+    list-style: none;
+}
+
+.editorList-ul {
+	margin:25px;
+    width: 200px;
+    height: 430px;
+    background-color: #f1f1f1;
+}
+
+.editorList-ul li {
+    width: 97px;
+    height: 70px;
+    line-height: 70px;
+    text-align: center;
+    border: 1px solid grey;
+    float: left;
+}

@@ -91,6 +91,9 @@
 .rd-title-group {
 	margin-top: 10px;
 }
+.rd-title-group * {
+	cursor: pointer;
+}
 .rd-title-tips input {
 	height: 30px;
 	padding-left: 8px;

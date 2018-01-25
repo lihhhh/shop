@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import angular from 'angular';
 import styles from './main.css';
 import _ from 'lodash';
@@ -6,11 +7,12 @@ import img from './../../static/add.png';
 
 var shopApp = angular.module('shopApp');
 
-shopApp.directive('rdMain',['rsMain',function(rsMain){
+shopApp.directive('rdMain',['rsMain','$timeout',function(rsMain,$timeout){
 	return {
 		restrict : 'AE',
 		template : `
 			<div class="rd-main-box">
+				<!-- 左边菜单 -->
 			    <div class="left-menu pull-left">
 				    <div class="left-menu-header">
 					    <span>添加模块</span>
@@ -22,19 +24,24 @@ shopApp.directive('rdMain',['rsMain',function(rsMain){
 				        </li>
 				    </ul>
 			    </div>
+			    <!-- 手机 -->
 			    <div class="center-phone pull-left">
-				    <div class='phone-style'>
-					    <div class="phone-header"></div>
-					    <div class="phone-status"><span class="phone-status-title">微信首页</span></div>
-					    <div class="phone-main">
-						    <ul>
-							    <li ng-repeat="editor in editors track by $index">
-								    <render editor="editor" editors="editors"></render>
-							    </li>
-						    </ul>
+				    <div class='phone-style ps-r' style="height:{{phoneHeight}}px">
+					    <div>
+						    <div class="phone-header"></div>
+						    <div class="phone-status"><span class="phone-status-title">微信首页</span></div>
+						    <div class="phone-main">
+							    <ul>
+								    <li ng-repeat="editor in editors track by $index">
+									    <render editor="editor" editors="editors"></render>
+								    </li>
+							    </ul>
+						    </div>
+						    <div class="phone-footer"></div>
 					    </div>
 				    </div>
 			    </div>
+			    <!-- 底部保存 -->
 			    <div class="diy-actions-submit">
 			        <a href="javascript:;" class="btn btn-primary" id="j-savePage" ng-click="saveJson()">保存</a>
 			        <a href="javascript:;" class="btn btn-success" id="j-saveAndPrvPage">保存并预览</a>
@@ -43,7 +50,10 @@ shopApp.directive('rdMain',['rsMain',function(rsMain){
 			    </div>
 			</div>
 		`,
-		link : function($scope){
+		link : function($scope,$ele){
+
+			$scope.phoneHeight = 600;
+
 			$scope.editorList = [
 				{
 	                'name': '富文本',
@@ -62,7 +72,7 @@ shopApp.directive('rdMain',['rsMain',function(rsMain){
 	                'type': 'a1'
 	            },{
 	                'name': '商品搜索',
-	                'type': 'a1'
+	                'type': 'rd-search'
 	            },
 	            {
 	                'name': '文本导航',
@@ -123,6 +133,13 @@ shopApp.directive('rdMain',['rsMain',function(rsMain){
         		console.log('json:',json);
         		$scope.editors = JSON.parse(json.editors);
         	});
+
+        	$scope.$watch('editors',()=>{
+        		debugger
+        		var _h = $('.phone-style>div').height();
+
+        		$scope.phoneHeight = _h>500?_h+100:600;
+        	},true)
 
 
             // 保存json数据

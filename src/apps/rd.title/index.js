@@ -14,7 +14,7 @@ shopApp.directive('rdTitle',['$timeout',function($timeout){
 		template: `
 			<div class="ps-r">
 				<div class="rd-title-box" ng-click="isClick()" ng-mouseover="editor.menu.hover = true;" ng-mouseout="editor.menu.hover = false;">
-					<div class="title-style" ng-class="editor.model.class.className">
+					<div class="title-style" ng-class="'title-style-'+editor.model.class.code">
 						<span>{{editor.model.title}}</span>
 					</div>
 					<div class="rd-title-top" ng-show="editor.menu.isShow||editor.menu.hover">
@@ -28,41 +28,71 @@ shopApp.directive('rdTitle',['$timeout',function($timeout){
 				</div>
 				<rd-tips  ng-show="editor.menu.isShow">
 					<div class="rd-title-tips">
-						<div class="rd-title-group">
+						<div class="rd-title-group clearfix">
 							<label class="rd-title-tips-title" for="">标题：</label>
 							<input type="text" placeholder='标题名称' ng-model="editor.model.title"/>
 						</div>
-						<div class="rd-title-group">
+						<div class="rd-title-group clearfix">
 							<label class="rd-title-tips-title" for="style">显示类型：</label>
-							<input type="radio" name='style' ng-checked="{{editor.model.class.code=='1'}}" ng-click="selectClass('1')"/><label class="style-group" for="">样式一</label>
-							<input type="radio" name='style' ng-checked="{{editor.model.class.code==2}}" ng-click="selectClass('2')"/><label class="style-group" for="">样式二</label>
-							<input type="radio" name='style' ng-checked="{{editor.model.class.code==3}}" ng-click="selectClass('3')"/><label class="style-group" for="">样式三</label>
-							<input type="radio" name='style' ng-checked="{{editor.model.class.code==4}}" ng-click="selectClass('4')"/><label class="style-group" for="">样式四</label>
+							<span ng-repeat="stl in styleArr">
+								<input type="radio" name='style{{$id}}' id="rd-title-tips-style{{stl.code}}" ng-checked="editor.model.class.code==stl.code" ng-click="selectClass(stl)"/><label class="style-group" for="rd-title-tips-style{{stl.code}}">{{stl.name}}</label>
+							</span>
 						</div>
-						<div class="rd-title-group">
+						<div class="rd-title-group clearfix">
 							<label class="rd-title-tips-title" for="">显示方式：</label>
-							<input type="radio" name='show'/><label class="style-group" for="">居中</label>
-							<input type="radio" name='show'/><label class="style-group" for="">居左</label>
-							<input type="radio" name='show'/><label class="style-group" for="">居右</label>
+							<span ng-repeat="shw in showArr">
+								<input type="radio" id="rd-title-tips-show{{shw.code}}" ng-checked="editor.model.show.code==shw.code" ng-click="selectShow(shw)" name='show{{$id}}'/><label class="style-group" for="rd-title-tips-show{{shw.code}}">{{shw.name}}</label>
+							</span>
 						</div>
 					</div>
 				</rd-tips>
 			</div>
 		`,
+		controller:function($scope){
+			// debugger
+		},
 		link: function($scope){
+			$scope.radioNameID = 0;
 			// 测试数据
 			$scope.editor.menu = {
 				isShow : false,
 				hover : false
 			}
-debugger
+
+			$scope.styleArr = [
+				{
+					name:'样式一',
+					code:1
+				},{
+					name:'样式二',
+					code:2
+				},{
+					name:'样式三',
+					code:3
+				},{
+					name:'样式四',
+					code:4
+				}
+			];
+
+			$scope.showArr = [
+				{
+					name:'居中',
+					code:1
+				},{
+					name:'居左',
+					code:2
+				},{
+					name:'居右',
+					code:3
+				}
+			];
+
 			if(!$scope.editor.model){
 				$scope.editor.model = {
 					title:'标题名称',
-					class:{
-						className:'title-style-1',
-						code:1
-					}
+					class:$scope.styleArr[0],
+					show:$scope.showArr[1]
 				};
 			}
 
@@ -103,11 +133,13 @@ debugger
 				$scope.editors.splice(nextIdx,0,temp);
 			}
 
-			$scope.selectClass = function(code){
-				$scope.editor.model.class = {
-					code : code,
-					className : 'title-style-'+code
-				};
+			$scope.selectClass = function(it){
+				$scope.editor.model.class = it;
+			}
+
+			$scope.selectShow = function(it){
+				debugger
+				$scope.editor.model.show = it;
 			}
 
 			function getIdx(){

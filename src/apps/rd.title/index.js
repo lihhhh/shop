@@ -13,7 +13,7 @@ shopApp.directive('rdTitle',['$timeout',function($timeout){
 		},
 		template: `
 			<div class="ps-r">
-				<div class="rd-title-box" ng-click="isClick()" ng-mouseover="editor.menu.hover = true;" ng-mouseout="editor.menu.hover = false;">
+				<div class="rd-title-box" ng-mouseover="editor.menu.hover = true;" ng-mouseout="editor.menu.hover = false;">
 					<div class="title-style" ng-class="'title-style-'+editor.model.class.code">
 						<span>{{editor.model.title}}</span>
 					</div>
@@ -80,12 +80,7 @@ shopApp.directive('rdTitle',['$timeout',function($timeout){
 				};
 			}
 
-			$scope.isClick = function(){
-				$scope.editors.map(function(it){
-					it.menu.isShow = false;
-				})
-				$scope.editor.menu.isShow = !$scope.editor.menu.isShow;
-			}
+			
 
 			
 

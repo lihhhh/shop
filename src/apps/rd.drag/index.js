@@ -12,7 +12,7 @@ shopApp.directive('rdDrag',['$timeout','rsCommon',function($timeout,rsCommon){
 			editors:'='
 		},
 		template: `
-			<div class="rd-title-top" ng-show="editor.menu.isShow||editor.menu.hover">
+			<div class="rd-title-top"  ng-click="isClick()" ng-show="editor.menu.isShow||editor.menu.hover">
 				<div class="rd-title-menu">
 					<a href="javascript:" ng-click='moveEditor($event,-1)'>上移</a>
 					<a href="javascript:" ng-click='moveEditor($event,1)'>下移</a>
@@ -52,6 +52,13 @@ shopApp.directive('rdDrag',['$timeout','rsCommon',function($timeout,rsCommon){
 				event.stopPropagation();
 				var idx = rsCommon.getIdx($scope.editors,$scope.editor);
 				$scope.editors.splice(idx,1);
+			}
+
+			$scope.isClick = function(){
+				$scope.editors.map(function(it){
+					it.menu.isShow = false;
+				})
+				$scope.editor.menu.isShow = !$scope.editor.menu.isShow;
 			}
 
 

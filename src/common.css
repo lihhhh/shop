@@ -33,3 +33,8 @@ a {
 .clearfix:after { 
   clear: both; 
 } 
+
+
+.margin-all {
+	margin: 12px;
+}

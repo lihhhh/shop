@@ -65,7 +65,7 @@ shopApp.directive('rdMain',['rsMain','$timeout',function(rsMain,$timeout){
 	            },
 	            {
 	                'name': '商品',
-	                'type': 'a1'
+	                'type': 'rd-commodity'
 	            },
 	            {
 	                'name': '商品列表',

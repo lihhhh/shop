@@ -1,5 +1,6 @@
 require("./apps/common");
 require("./apps/main");
+require("./apps/rd.commodity");
 require("./apps/rd.drag");
 require("./apps/rd.render");
 require("./apps/rd.search");

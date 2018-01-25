@@ -57,7 +57,7 @@ module.exports = function(cfg){
                 filename: 'index.html'
             }),
             // 代码压缩
-            // new MinifyPlugin()
+            new MinifyPlugin()
         ]
     };
 }

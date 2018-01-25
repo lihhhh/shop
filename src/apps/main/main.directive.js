@@ -135,7 +135,6 @@ shopApp.directive('rdMain',['rsMain','$timeout',function(rsMain,$timeout){
         	});
 
         	$scope.$watch('editors',()=>{
-        		debugger
         		var _h = $('.phone-style>div').height();
 
         		$scope.phoneHeight = _h>500?_h+100:600;

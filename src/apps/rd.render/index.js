@@ -13,6 +13,13 @@ shopApp.directive('render',['$compile',function($compile){
 		link: function($scope,$ele,$attr){
 			if($scope.editor.type){
 				var el = '<'+$scope.editor.type+' editor="editor" editors="editors"></'+$scope.editor.type+'>';
+
+				// var scope = $scope.$new();
+
+				// scope.editor = $scope.editor;
+
+				// scope.editors = $scope.editors;
+
 				el = $compile(el)($scope);
 
 				$ele.html('');

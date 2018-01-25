@@ -35,20 +35,24 @@ shopApp.directive('rdTitle',['$timeout',function($timeout){
 						<div class="rd-title-group clearfix">
 							<label class="rd-title-tips-title" for="style">显示类型：</label>
 							<span ng-repeat="stl in styleArr">
-								<input type="radio" name='style' id="rd-title-tips-style{{stl.code}}" ng-checked="editor.model.class.code==stl.code" ng-click="selectClass(stl)"/><label class="style-group" for="rd-title-tips-style{{stl.code}}">{{stl.name}}</label>
+								<input type="radio" name='style{{$id}}' id="rd-title-tips-style{{stl.code}}" ng-checked="editor.model.class.code==stl.code" ng-click="selectClass(stl)"/><label class="style-group" for="rd-title-tips-style{{stl.code}}">{{stl.name}}</label>
 							</span>
 						</div>
 						<div class="rd-title-group clearfix">
 							<label class="rd-title-tips-title" for="">显示方式：</label>
-							<input type="radio" id="rd-title-tips-show1" name='show'/><label class="style-group" for="rd-title-tips-show1">居中</label>
-							<input type="radio" id="rd-title-tips-show2" name='show'/><label class="style-group" for="rd-title-tips-show2">居左</label>
-							<input type="radio" id="rd-title-tips-show3" name='show'/><label class="style-group" for="rd-title-tips-show3">居右</label>
+							<span ng-repeat="shw in showArr">
+								<input type="radio" id="rd-title-tips-show{{shw.code}}" ng-checked="editor.model.show.code==shw.code" ng-click="selectShow(shw)" name='show{{$id}}'/><label class="style-group" for="rd-title-tips-show{{shw.code}}">{{shw.name}}</label>
+							</span>
 						</div>
 					</div>
 				</rd-tips>
 			</div>
 		`,
+		controller:function($scope){
+			// debugger
+		},
 		link: function($scope){
+			$scope.radioNameID = 0;
 			// 测试数据
 			$scope.editor.menu = {
 				isShow : false,
@@ -71,10 +75,24 @@ shopApp.directive('rdTitle',['$timeout',function($timeout){
 				}
 			];
 
+			$scope.showArr = [
+				{
+					name:'居中',
+					code:1
+				},{
+					name:'居左',
+					code:2
+				},{
+					name:'居右',
+					code:3
+				}
+			];
+
 			if(!$scope.editor.model){
 				$scope.editor.model = {
 					title:'标题名称',
-					class:$scope.styleArr[0]
+					class:$scope.styleArr[0],
+					show:$scope.showArr[1]
 				};
 			}
 
@@ -116,8 +134,12 @@ shopApp.directive('rdTitle',['$timeout',function($timeout){
 			}
 
 			$scope.selectClass = function(it){
-				debugger
 				$scope.editor.model.class = it;
+			}
+
+			$scope.selectShow = function(it){
+				debugger
+				$scope.editor.model.show = it;
 			}
 
 			function getIdx(){

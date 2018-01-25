@@ -1,4 +1,5 @@
 import angular from 'angular';
+import style from './rd.drag.css';
 import _ from 'lodash';
 
 var shopApp = angular.module('shopApp');

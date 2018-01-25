@@ -96,6 +96,17 @@ ul {
     background-image: url('../../static/phone.png');
 }
 
+.phone-footer {
+    position: absolute;
+    bottom: 0;
+    left: 42%;
+    margin: 10px auto;
+    width: 62px;
+    height: 61px;
+    background-position: -253px -70px;
+    background-image: url('../../static/phone.png');
+}
+
 .phone-status {
     margin: 0 12px;
     height: 63px;

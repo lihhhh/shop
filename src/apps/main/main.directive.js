@@ -11,6 +11,7 @@ shopApp.directive('rdMain',['rsMain',function(rsMain){
 		restrict : 'AE',
 		template : `
 			<div class="rd-main-box">
+				<!-- 左边菜单 -->
 			    <div class="left-menu pull-left">
 				    <div class="left-menu-header">
 					    <span>添加模块</span>
@@ -22,8 +23,9 @@ shopApp.directive('rdMain',['rsMain',function(rsMain){
 				        </li>
 				    </ul>
 			    </div>
+			    <!-- 手机 -->
 			    <div class="center-phone pull-left">
-				    <div class='phone-style'>
+				    <div class='phone-style ps-r'>
 					    <div class="phone-header"></div>
 					    <div class="phone-status"><span class="phone-status-title">微信首页</span></div>
 					    <div class="phone-main">
@@ -33,8 +35,10 @@ shopApp.directive('rdMain',['rsMain',function(rsMain){
 							    </li>
 						    </ul>
 					    </div>
+					    <div class="phone-footer"></div>
 				    </div>
 			    </div>
+			    <!-- 底部保存 -->
 			    <div class="diy-actions-submit">
 			        <a href="javascript:;" class="btn btn-primary" id="j-savePage" ng-click="saveJson()">保存</a>
 			        <a href="javascript:;" class="btn btn-success" id="j-saveAndPrvPage">保存并预览</a>

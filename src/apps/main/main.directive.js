@@ -76,7 +76,7 @@ shopApp.directive('rdMain',['rsMain','$timeout',function(rsMain,$timeout){
 	            },
 	            {
 	                'name': '文本导航',
-	                'type': 'a1'
+	                'type': 'rd-textnav'
 	            },
 	            {
 	                'name': '图片导航',

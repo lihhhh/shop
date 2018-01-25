@@ -19,9 +19,8 @@ shopApp.directive('rdSearch',['$timeout',function($timeout){
 					<rd-drag editor="editor" editors="editors"></rd-drag>
 				</div>
 				<rd-tips  ng-show="editor.menu.isShow">
-				<h1>1212</h1>
+				<p class="rd-title-tips">可随意插入任何页面和位置，方便会员快速搜索商品。</p>
 				</rd-tips>
-				
 			</div>
 		`,
 		link: function($scope){

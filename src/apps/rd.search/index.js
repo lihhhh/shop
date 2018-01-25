@@ -13,7 +13,11 @@ shopApp.directive('rdSearch',['$timeout',function($timeout){
 		},
 		template: `
 			<div class="ps-r">
-				rororoorororroor
+				<div class="rd-search-out">
+					<input text="text" name="keyWord" placeholder="请输入商品关键字">
+					<button type="button"></button>
+
+				</div>
 			</div>
 		`,
 		link: function($scope){

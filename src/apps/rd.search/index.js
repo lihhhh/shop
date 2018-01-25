@@ -12,12 +12,16 @@ shopApp.directive('rdSearch',['$timeout',function($timeout){
 			editors:'='
 		},
 		template: `
-			<div class="ps-r">
-				<div class="rd-search-out">
+			<div class="ps-r" ng-mouseover="editor.menu.hover = true;" ng-mouseout="editor.menu.hover = false;">
+				<div class="rd-search-out ps-r" >
 					<input text="text" name="keyWord" placeholder="请输入商品关键字">
 					<button type="button"></button>
-
+					<rd-drag editor="editor" editors="editors"></rd-drag>
 				</div>
+				<rd-tips  ng-show="editor.menu.isShow">
+				<h1>1212</h1>
+				</rd-tips>
+				
 			</div>
 		`,
 		link: function($scope){

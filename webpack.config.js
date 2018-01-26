@@ -43,7 +43,7 @@ module.exports = function(cfg){
         devServer: {
             contentBase: path.join(__dirname, "dist"),
             compress: true,
-            port: 8002,
+            port: 9000,
             proxy: {
                 '*': {
                     target: 'http://localhost:3000',

@@ -122,9 +122,18 @@ shopApp.directive('rdMain',['rsMain','$timeout',function(rsMain,$timeout){
 
 	        //添加
             $scope.editorTitleClick = function(item,idx) {
-            	// item = _.cloneDeep(item);
-            	// item.name+=idx;
-                $scope.editors.push(_.cloneDeep(item));
+            	$scope.editors.sort(function(a,b){
+            		return a.idx - b.idx;
+            	});
+            	item = _.cloneDeep(item);
+            	if($scope.editors.length>0){
+            		var last = $scope.editors[$scope.editors.length-1];
+            		item.idx = last.idx+1;
+            	}else{
+            		item.idx = 1;
+            	}
+                $scope.editors.push(item);
+                // console.log($scope.editors);
             }
 
             rsMain.getJson().then(function(_d){
@@ -135,9 +144,13 @@ shopApp.directive('rdMain',['rsMain','$timeout',function(rsMain,$timeout){
         	});
 
         	$scope.$watch('editors',()=>{
+        		$scope.editors.sort(function(a,b){
+            		return a.idx - b.idx;
+            	});
         		var _h = $('.phone-style>div').height();
 
         		$scope.phoneHeight = _h>500?_h+100:600;
+        		// console.log($scope.editors);
         	},true)
 
 

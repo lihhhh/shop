@@ -1,6 +1,8 @@
 import angular from 'angular';
 import style from './rd.drag.css';
 import _ from 'lodash';
+import $ from 'jquery';
+
 
 var shopApp = angular.module('shopApp');
 
@@ -25,27 +27,63 @@ shopApp.directive('rdDrag',['$timeout','rsCommon',function($timeout,rsCommon){
 
 			$scope.moveEditor = function(event,num){
 				//console
-				var nextIdx;
+				var nextIdx,
+					thisLast,//数组中相邻的上一个元素
+					thisBefore;//数组中相邻的下一个元素
+
 
 				event.stopPropagation();
-				var idx = rsCommon.getIdx($scope.editors,$scope.editor);
+
 				$scope.editors.map(function(it){
 					it.menu.hover = false;
 					it.menu.isShow = false;
 				})
 
-				var temp = _.cloneDeep($scope.editor);
-				temp.menu.isShow = true;
+				$scope.editor.menu.isShow = true;
 
-				$scope.editors.splice(idx,1);
+				// 获取当前项在数组中的下标
+				var arrIdx = rsCommon.getIdx($scope.editors,$scope.editor);
 
-				if(num==-1){
-					nextIdx = idx+num<0?0:idx+num;
-				}else{
-					var len = $scope.editors.length;
-					nextIdx = idx+num>len?len:idx+num;
+				if(arrIdx>0){
+					thisLast = $scope.editors[arrIdx-1];
 				}
-				$scope.editors.splice(nextIdx,0,temp);
+
+				if(arrIdx<$scope.editors.length-1){
+					thisBefore = $scope.editors[arrIdx+1]
+				}
+
+				if(num==-1&&thisLast){
+					var tempIdx = $scope.editor.idx;
+					$scope.editor.idx = thisLast.idx;
+					thisLast.idx = tempIdx;
+				}
+
+				if(num==1&&thisBefore){
+					var tempIdx = $scope.editor.idx;
+					$scope.editor.idx = thisBefore.idx;
+					thisBefore.idx = tempIdx;
+				}
+
+
+
+
+				// $scope.editors.map(function(it){
+				// 	it.menu.hover = false;
+				// 	it.menu.isShow = false;
+				// })
+
+				// var temp = _.cloneDeep($scope.editor);
+				// temp.menu.isShow = true;
+
+				// $scope.editors.splice(idx,1);
+
+				// if(num==-1){
+				// 	nextIdx = idx+num<0?0:idx+num;
+				// }else{
+				// 	var len = $scope.editors.length;
+				// 	nextIdx = idx+num>len?len:idx+num;
+				// }
+				// $scope.editors.splice(nextIdx,0,temp);
 			}
 
 			$scope.deleteEditor = function(event){
@@ -60,6 +98,9 @@ shopApp.directive('rdDrag',['$timeout','rsCommon',function($timeout,rsCommon){
 				})
 				$scope.editor.menu.isShow = !$scope.editor.menu.isShow;
 			}
+
+			
+
 
 
 		}

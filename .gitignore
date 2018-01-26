@@ -1,6 +1,7 @@
 server/data.json
 #client of build
 client
+dist
 #webpack dlls
 dlls
 # Logs

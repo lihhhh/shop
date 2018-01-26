@@ -2,7 +2,8 @@
 	position: relative;
 	height: 30px;
 	/*background: #28c192;*/
-	margin: 12px 12px;
+	/*margin: 12px 12px;*/
+	margin-top: 12px;
 	cursor: all-scroll;
 	overflow: hidden;
 }

@@ -15,8 +15,8 @@ module.exports = function(cfg){
     return {
         entry: './src/app.js',
         output: {
-            path: path.resolve(__dirname, 'dist'),
-            filename: 'bundle.js'
+            path: path.resolve(path.join(__dirname,'dist')),
+            filename: 'Js/shop/bundle.js'
         },
         module: {
             rules: [{
@@ -35,7 +35,7 @@ module.exports = function(cfg){
                 use: {
                     loader:'file-loader',
                     options: {
-                        name:'images/[hash].[ext]'
+                        name:'Images/shop/[hash].[ext]'
                     }
                 }
             },]
@@ -54,7 +54,7 @@ module.exports = function(cfg){
         plugins: [
             new HtmlWebpackPlugin({
                 template: './src/index.html',
-                filename: 'index.html'
+                filename: 'Seller/views/tpl/index.html'
             }),
             // 代码压缩
             // new MinifyPlugin()

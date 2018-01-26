@@ -1,14 +1,16 @@
-.test {
-	background: red;
-	height: 200px;
-	width: 200px;
-}
 ul {
     list-style: none;
 }
 
 .rd-main-box {
     margin-top: 80px;
+}
+
+.phone-main {
+    width: 320px;
+    margin: 0 auto;
+    background: #f9f9f9;
+    padding-top: 12px;
 }
 
 .left-menu {
@@ -79,6 +81,7 @@ ul {
 }
 
 .phone-style {
+    padding-top: 111px;
     margin-left: 155px;
     width: 345px;
     /*height: 600px;*/
@@ -90,7 +93,9 @@ ul {
 }
 
 .phone-header {
-    margin: 13px auto;
+    position: absolute;
+    top: 10px;
+    left: 38%;
     width: 98px;
     height: 34px;
     background-position: 0 -74px;
@@ -109,7 +114,10 @@ ul {
 }
 
 .phone-status {
-    margin: 0 12px;
+    position: absolute;
+    top: 60px;
+    width: 320px;
+    left: 11px;
     height: 63px;
     text-align: center;
     padding-top: 29px;

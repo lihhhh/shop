@@ -15,20 +15,23 @@ shopApp.directive('render',['$compile',function($compile){
 				isShow : false,
 				hover : false
 			}
-			if($scope.editor.type){
-				var el = '<'+$scope.editor.type+' editor="editor" editors="editors"></'+$scope.editor.type+'>';
 
-				// var scope = $scope.$new();
+			draw();
 
-				// scope.editor = $scope.editor;
+			function draw(){
+				if($scope.editor.type){
+					var el = '<'+$scope.editor.type+' editor="editor" editors="editors"></'+$scope.editor.type+'>';
 
-				// scope.editors = $scope.editors;
+					el = $compile(el)($scope);
 
-				el = $compile(el)($scope);
-
-				$ele.html('');
-				$ele.append(el);
+					$ele.html('');
+					$ele.append(el);
+				}
 			}
+
+			$scope.$watch('editor.idx',function(){
+				draw();
+			});
 		}
 	};
 }]);

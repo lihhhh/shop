@@ -15,6 +15,12 @@ shopApp.directive('rdCommodity',['$timeout','rsCommon',function($timeout,rsCommo
 			<div class="ps-r margin-all rd-commodity-box" ng-mouseover="editor.menu.hover = true;" ng-mouseout="editor.menu.hover = false;">
 				<div>商品</div>
 				<rd-drag editor="editor" editors="editors"></rd-drag>
+
+				<rd-tips  ng-show="editor.menu.isShow">
+					<div class="rd-title-tips">
+						123
+					</div>
+				</rd-tips>
 			</div>
 		`,
 		link: function($scope){

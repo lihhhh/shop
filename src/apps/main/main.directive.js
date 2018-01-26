@@ -27,10 +27,10 @@ shopApp.directive('rdMain',['rsMain','$timeout',function(rsMain,$timeout){
 			    <!-- 手机 -->
 			    <div class="center-phone pull-left">
 				    <div class='phone-style ps-r' style="height:{{phoneHeight}}px">
-					    <div>
+					    <div class="height-100">
 						    <div class="phone-header"></div>
 						    <div class="phone-status"><span class="phone-status-title">微信首页</span></div>
-						    <div class="phone-main">
+						    <div class="phone-main height-100">
 							    <ul>
 								    <li ng-repeat="editor in editors track by $index">
 									    <render editor="editor" editors="editors"></render>
@@ -144,13 +144,14 @@ shopApp.directive('rdMain',['rsMain','$timeout',function(rsMain,$timeout){
         	});
 
         	$scope.$watch('editors',()=>{
+
         		$scope.editors.sort(function(a,b){
             		return a.idx - b.idx;
             	});
-        		var _h = $('.phone-style>div').height();
+        		var _h = $('.phone-style ul').height();
 
-        		$scope.phoneHeight = _h>500?_h+100:600;
-        		// console.log($scope.editors);
+        		$scope.phoneHeight = _h>387?_h+223:600;
+
         	},true)
 
 

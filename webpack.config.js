@@ -15,7 +15,7 @@ module.exports = function(cfg){
     return {
         entry: './src/app.js',
         output: {
-            path: path.resolve(__dirname, 'dist'),
+            path: path.resolve(path.join(__dirname,'dist')),
             filename: 'bundle.js'
         },
         module: {
@@ -35,7 +35,7 @@ module.exports = function(cfg){
                 use: {
                     loader:'file-loader',
                     options: {
-                        name:'images/[hash].[ext]'
+                        name:'Images/[hash].[ext]'
                     }
                 }
             },]

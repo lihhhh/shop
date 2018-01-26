@@ -26,6 +26,7 @@ shopApp.directive('rdDrag',['$timeout','rsCommon',function($timeout,rsCommon){
 		link: function($scope){
 
 			$scope.moveEditor = function(event,num){
+				debugger
 				//console
 				var nextIdx,
 					thisLast,//数组中相邻的上一个元素

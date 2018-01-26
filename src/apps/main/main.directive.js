@@ -65,18 +65,18 @@ shopApp.directive('rdMain',['rsMain','$timeout',function(rsMain,$timeout){
 	            },
 	            {
 	                'name': '商品',
-	                'type': 'a1'
+	                'type': 'rd-commodity'
 	            },
 	            {
 	                'name': '商品列表',
 	                'type': 'a1'
 	            },{
 	                'name': '商品搜索',
-	                'type': 'a1'
+	                'type': 'rd-search'
 	            },
 	            {
 	                'name': '文本导航',
-	                'type': 'a1'
+	                'type': 'rd-textnav'
 	            },
 	            {
 	                'name': '图片导航',
@@ -135,7 +135,6 @@ shopApp.directive('rdMain',['rsMain','$timeout',function(rsMain,$timeout){
         	});
 
         	$scope.$watch('editors',()=>{
-        		debugger
         		var _h = $('.phone-style>div').height();
 
         		$scope.phoneHeight = _h>500?_h+100:600;

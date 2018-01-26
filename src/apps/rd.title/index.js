@@ -13,18 +13,11 @@ shopApp.directive('rdTitle',['$timeout',function($timeout){
 		},
 		template: `
 			<div class="ps-r">
-				<div class="rd-title-box" ng-click="isClick()" ng-mouseover="editor.menu.hover = true;" ng-mouseout="editor.menu.hover = false;">
+				<div class="rd-title-box" ng-mouseover="editor.menu.hover = true;" ng-mouseout="editor.menu.hover = false;">
 					<div class="title-style" ng-class="'title-style-'+editor.model.class.code">
 						<span>{{editor.model.title}}</span>
 					</div>
-					<div class="rd-title-top" ng-show="editor.menu.isShow||editor.menu.hover">
-						<div class="rd-title-menu">
-							<a href="javascript:" ng-click='moveEditor($event,-1)'>上移</a>
-							<a href="javascript:" ng-click='moveEditor($event,1)'>下移</a>
-							<a href="javascript:">编辑</a>
-							<a href="javascript:" ng-click='deleteEditor($event)'>删除</a>
-						</div>
-					</div>
+					<rd-drag editor="editor" editors="editors"></rd-drag>
 				</div>
 				<rd-tips  ng-show="editor.menu.isShow">
 					<div class="rd-title-tips">
@@ -48,16 +41,7 @@ shopApp.directive('rdTitle',['$timeout',function($timeout){
 				</rd-tips>
 			</div>
 		`,
-		controller:function($scope){
-			// debugger
-		},
 		link: function($scope){
-			$scope.radioNameID = 0;
-			// 测试数据
-			$scope.editor.menu = {
-				isShow : false,
-				hover : false
-			}
 
 			$scope.styleArr = [
 				{
@@ -96,62 +80,19 @@ shopApp.directive('rdTitle',['$timeout',function($timeout){
 				};
 			}
 
-			$scope.isClick = function(){
-				$scope.editors.map(function(it){
-					it.menu.isShow = false;
-				})
-				$scope.editor.menu.isShow = !$scope.editor.menu.isShow;
-			}
+			
 
-			$scope.deleteEditor = function(event){
-				event.stopPropagation();
-				var idx = getIdx();
-				$scope.editors.splice(idx,1);
-			}
+			
 
-			$scope.moveEditor = function(event,num){
-				var nextIdx;
-
-				event.stopPropagation();
-				var idx = getIdx();
-				$scope.editors.map(function(it){
-					it.menu.hover = false;
-					it.menu.isShow = false;
-				})
-
-				var temp = _.cloneDeep($scope.editor);
-				temp.menu.isShow = true;
-
-				$scope.editors.splice(idx,1);
-
-				if(num==-1){
-					nextIdx = idx+num<0?0:idx+num;
-				}else{
-					var len = $scope.editors.length;
-					nextIdx = idx+num>len?len:idx+num;
-				}
-				$scope.editors.splice(nextIdx,0,temp);
-			}
+			
 
 			$scope.selectClass = function(it){
 				$scope.editor.model.class = it;
 			}
 
 			$scope.selectShow = function(it){
-				debugger
 				$scope.editor.model.show = it;
 			}
-
-			function getIdx(){
-				for(var i=0;i<$scope.editors.length;i++){
-					if($scope.editor == $scope.editors[i]){
-						return i;
-					}
-				}
-			}
-
-
-
 
 		}
 	};

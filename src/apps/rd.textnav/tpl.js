@@ -2,7 +2,7 @@ module.exports = `
 <div class="ps-r" ng-mouseover="editor.menu.hover = true;" ng-mouseout="editor.menu.hover = false;">
 				<div class="rd-texnav-out ps-r" >
 					<div class="rd-texnav-in" ng-repeat="item in editor.model.textNavDatasDiv">
-					<p class="color-text rd-texnav-in-p" >{{item.select ?item.select:'请添加导航连接'}}</p>
+					<p class="color-text rd-texnav-in-p" >{{item.selectName ?item.selectName:'请添加导航连接'}}</p>
 					 </div>
 					<rd-drag editor="editor" editors="editors"></rd-drag>
 				</div>
@@ -28,7 +28,7 @@ module.exports = `
 								</ul>
 							</div>
 							<div class="text-nav-name ">
-							<span>导航名称：</span><input ng-model="item.select" type="text">
+							<span>导航名称：</span><input type="text" placeholder='导航名称' value="导航名称" ng-model="item.selectName"/>
 							</div>
 						</div>
 						<!-- common -->

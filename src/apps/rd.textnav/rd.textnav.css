@@ -173,16 +173,16 @@ i, em {
 }
 .text-nav-name {
 	margin-left: 60px;
-	line-height: 28px;
+	line-height: 26px;
     font-size: 12px;
     font-weight: bold;
 }
 .text-nav-name input{
 	width: 240px;
-	height: 20px;
-	padding: 13px 10px;
+	height: 26px;
+	/*padding: 13px 10px;*/
 	border: 1px solid #ccc;
-	outline: none;
+	/*outline: none;*/
 }
 .rd-texnav-right-inout-in2-p-selectList{
 	display: inline-block;

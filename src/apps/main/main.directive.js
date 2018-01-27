@@ -26,7 +26,7 @@ shopApp.directive('rdMain',['rsMain','$timeout',function(rsMain,$timeout){
 			    </div>
 			    <!-- 手机 -->
 			    <div class="center-phone pull-left">
-				    <div class='phone-style ps-r' style="height:{{phoneHeight}}px">
+				    <div class='phone-style ps-r' ng-style="{height:phoneHeight+'px'}">
 					    <div class="height-100">
 						    <div class="phone-header"></div>
 						    <div class="phone-status"><span class="phone-status-title">微信首页</span></div>

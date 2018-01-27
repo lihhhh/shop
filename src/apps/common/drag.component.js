@@ -20,6 +20,8 @@ shopApp.directive('dragComponent', ['$timeout', function ($timeout) {
         'height : 100%'
       ].join(';');
 
+      debugger
+
       $scope.dragDown = function(){
         $scope.config.isMouseDown = true;
         $(document).on('mouseup.drag.up',function(){

@@ -12,7 +12,7 @@ shopApp.directive('rdBlankness', ['$timeout', 'rsCommon', function($timeout, rsC
             editors: '='
         },
         template: `
-			<div style="height:{{editor.model.height}}px" class="ps-r rd-blankness-box" ng-mouseover="editor.menu.hover = true;" ng-mouseout="editor.menu.hover = false;">
+			<div ng-style="{height:editor.model.height+'px'}" class="ps-r rd-blankness-box" ng-mouseover="editor.menu.hover = true;" ng-mouseout="editor.menu.hover = false;">
 				<div></div>
 				<rd-drag editor="editor" editors="editors"></rd-drag>
 
@@ -32,6 +32,7 @@ shopApp.directive('rdBlankness', ['$timeout', 'rsCommon', function($timeout, rsC
         	$scope.config = {
         		moveX:'',
         		mousemove:function(cfg){
+        			debugger
         			if(!cfg.moveX) return;
         			$scope.ps.left+=cfg.moveX;
         			$scope.ps.left = $scope.ps.left<0?0:$scope.ps.left;
@@ -45,8 +46,8 @@ shopApp.directive('rdBlankness', ['$timeout', 'rsCommon', function($timeout, rsC
 
         	if(!$scope.editor.model){
 				$scope.editor.model = {
-					height:$scope.ps.height,
-					left:$scope.ps.left
+					height:10,
+					left:0
 				};
 			}else {
 				$scope.ps = {

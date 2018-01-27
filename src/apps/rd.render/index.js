@@ -30,7 +30,7 @@ shopApp.directive('render',['$compile',function($compile){
 			}
 
 			$scope.$watch('editor.idx',function(){
-				// draw();
+				draw();
 			});
 		}
 	};

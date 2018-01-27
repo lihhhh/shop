@@ -9,7 +9,7 @@ module.exports = function(app){
 		res.sendfile(filepath);
 	})
 
-	app.get('/saveJson',function(req,res){
+	app.post('/WeChatData',function(req,res){
 		var query = req.query;
 		console.log(query);
 		fs.writeFile(__dirname+'/data.json', JSON.stringify(query), (err) => {
@@ -19,7 +19,7 @@ module.exports = function(app){
 		});
 	})
 
-	app.get('/getJson',function(req,res){
+	app.get('/WeChatData',function(req,res){
 		var query = req.query;
 		console.log(query);
 		fs.readFile(__dirname+'/data.json','utf-8', (err,_d) => {

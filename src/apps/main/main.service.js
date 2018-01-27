@@ -6,9 +6,9 @@ shopApp.service('rsMain',['$http','$q',function($http,$q){
 	this.saveJson = function(params){
 		var _q = $q.defer();
 		return $http({
-			method:'GET',
+			method:'Post',
 			params:params,
-			url:'/saveJson'
+			url:'WeChatData'
 		})
 	};
 
@@ -17,7 +17,7 @@ shopApp.service('rsMain',['$http','$q',function($http,$q){
 		return $http({
 			method:'GET',
 			params:params,
-			url:'/getJson'
+			url:'WeChatData'
 		})
 	}
 

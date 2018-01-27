@@ -2,6 +2,16 @@ var express = require('express');
 var path = require('path');
 var fs = require('fs');
 
+var bodyParser = require('body-parser');  
+  
+// ...   
+  
+// create application/json parser  
+var jsonParser = bodyParser.json()  
+  
+// create application/x-www-form-urlencoded parser  
+var urlencodedParser = bodyParser.urlencoded({ extended: false })  
+
 module.exports = function(app){
 
 	app.get('/',function(req,res){
@@ -9,7 +19,7 @@ module.exports = function(app){
 		res.sendfile(filepath);
 	})
 
-	app.post('/WeChatData',function(req,res){
+	app.post('/WeChatData',urlencodedParser,function(req,res){
 		var query = req.query;
 		console.log(query);
 		fs.writeFile(__dirname+'/data.json', JSON.stringify(query), (err) => {

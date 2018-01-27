@@ -36,7 +36,7 @@ module.exports = function(cfg){
                 use: {
                     loader:'file-loader',
                     options: {
-                        name:'Images/Seller/Template/WeChat/[hash].[ext]'
+                        name:'/Images/Seller/Template/WeChat/[hash].[ext]'
                     }
                 }
             },]
@@ -58,7 +58,7 @@ module.exports = function(cfg){
                 filename: 'index.html'
             }),
             // 代码压缩
-            // new MinifyPlugin()
+            new MinifyPlugin()
         ]
     };
 }

@@ -4,6 +4,8 @@
     box-sizing: border-box;
 }
 
+input::-ms-clear{display:none;}
+
 a {
 	text-decoration: none;
 }

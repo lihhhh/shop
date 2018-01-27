@@ -7,8 +7,9 @@ shopApp.service('rsMain',['$http','$q',function($http,$q){
 		var _q = $q.defer();
 		return $http({
 			method:'Post',
-			params:params,
-			url:'WeChatData'
+			data:params,
+			url:'WeChatData',
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 		})
 	};
 

@@ -11,10 +11,10 @@ shopApp.directive('render',['$compile',function($compile){
 			editors:'='
 		},
 		link: function($scope,$ele,$attr){
-			$scope.editor.menu = {
-				isShow : false,
-				hover : false
-			}
+			// $scope.editor.menu = {
+			// 	isShow : false,
+			// 	hover : false
+			// }
 
 			draw();
 

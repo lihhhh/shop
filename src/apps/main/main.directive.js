@@ -91,7 +91,7 @@ shopApp.directive('rdMain',['rsMain','$timeout',function(rsMain,$timeout){
 	            },
 	            {
 	                'name': '辅助空白',
-	                'type': 'a1'
+	                'type': 'rd-blankness'
 	            },
 	            {
 	                'name': '顶部菜单',
@@ -132,8 +132,23 @@ shopApp.directive('rdMain',['rsMain','$timeout',function(rsMain,$timeout){
             	}else{
             		item.idx = 1;
             	}
+
+            	$scope.editors.map(function(it){
+            		it.menu.isShow = false;
+            		it.menu.isShow = false;
+            	})
+
+            	// 控制 默认选中
+            	item.menu = {
+					isShow : true,
+					hover : false
+				}
+
+
                 $scope.editors.push(item);
-                // console.log($scope.editors);
+                
+                // 设置滚动条到最底部
+                $(document).scrollTop($('.center-phone').get(0).scrollHeight-600);
             }
 
             rsMain.getJson().then(function(_d){

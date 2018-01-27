@@ -16,7 +16,8 @@ module.exports = function(cfg){
         entry: './src/app.js',
         output: {
             path: path.resolve(path.join(__dirname,'dist')),
-            filename: 'bundle.js'
+            filename: 'bundle.js',
+            // publicPath:'/'
         },
         module: {
             rules: [{
@@ -35,7 +36,7 @@ module.exports = function(cfg){
                 use: {
                     loader:'file-loader',
                     options: {
-                        name:'Images/[hash].[ext]'
+                        name:'Images/Seller/Template/WeChat/[hash].[ext]'
                     }
                 }
             },]

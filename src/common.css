@@ -41,3 +41,10 @@ a {
 .margin-all {
 	margin: 12px;
 }
+/*hh*/
+.color-text{
+	color: #646464;
+}
+.border-color{
+	border: 1px solid #ddd;
+}

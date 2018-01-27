@@ -87,7 +87,7 @@ shopApp.directive('rdMain',['rsMain','$timeout',function(rsMain,$timeout){
 	                'type': 'a1'
 	            },{
 	                'name': '分割线',
-	                'type': 'a1'
+	                'type': 'rd-divider'
 	            },
 	            {
 	                'name': '辅助空白',

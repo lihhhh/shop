@@ -21,7 +21,7 @@ shopApp.directive('rdBlankness', ['$timeout', 'rsCommon', function($timeout, rsC
 					<div class="clearfix">
 						<label class="rd-blankness-tips-title pull-left" for="style">高度：</label>
 						<div class="rd-blankness-drag-box pull-left">
-							<span class="rd-blankness-content" style="left:{{ps.left}}px"><div drag-component="config"></div></span>
+							<span class="rd-blankness-content" ng-style="{'left':ps.left+'px'}"><div drag-component="config"></div></span>
 						</div>
 						<span class="rd-blankness-val pull-left" for="style">{{ps.height}}px</span>
 					</div>

@@ -12,22 +12,25 @@ shopApp.directive('dragComponent', ['$timeout', function ($timeout) {
     scope:{ 
       config:'=dragComponent'
     },
-    template: ['<div ng-mousedown="dragDown()" style="{{style}}">',
+    template: ['<div ng-mousedown="dragDown()" ng-style="style">',
               '</div>'].join(''),
     link: function ($scope, $element, $attrs) {
-      $scope.style = [
-        'width : 100%',
-        'height : 100%'
-      ].join(';');
+      $scope.style = {
+        'width' : '100%',
+        'height' : '100%'
+      }
 
-      debugger
+      
 
       $scope.dragDown = function(){
+        debugger
         $scope.config.isMouseDown = true;
-        $(document).on('mouseup.drag.up',function(){
+
+        $(document).on('mouseup',function(){
          // console.log('mouseup');
           $scope.config.isMouseDown = false;
-          $(document).unbind('.drag');
+          $(document).unbind('mouseup');
+          $(document).unbind('mousemove');
           $scope.beforeX = null;
           $scope.beforeY = null;
           $scope.config.moveX = 0;
@@ -36,7 +39,9 @@ shopApp.directive('dragComponent', ['$timeout', function ($timeout) {
             $scope.config.mouseup($scope.config);
           }
         })
-        $(document).on('mousemove.drag.move',function(e){
+
+        $(document).on('mousemove',function(e){
+          debugger
           if(/\d+/.test($scope.beforeX)&&/\d+/.test($scope.beforeY)){
             $scope.config.moveX = e.pageX - $scope.beforeX;
             $scope.config.moveY = e.pageY - $scope.beforeY;

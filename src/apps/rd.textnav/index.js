@@ -72,8 +72,8 @@ shopApp.directive('rdTextnav', ['$timeout','rsCommon', function($timeout,rsCommo
 			];
 			$scope.textNavDatasDiv = [
 				{
-					"select":""
-					
+					"select":"",
+					"selectName":''
 				}
 			];
 			//添加
@@ -83,6 +83,7 @@ shopApp.directive('rdTextnav', ['$timeout','rsCommon', function($timeout,rsCommo
 
 			$scope.listSelect = function(it,item){
 				item.select = it.name;
+				item.selectName=it.name;
 				$scope.textnav = false;
 				$scope.editor.model.showSelect=false;
 

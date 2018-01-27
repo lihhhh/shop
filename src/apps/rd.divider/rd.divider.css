@@ -1,0 +1,19 @@
+.rd-divider-out{
+	height: 30px;
+}
+.rd-divider-out hr{
+    border: 0 none;
+    border-top: 1px dashed #ddd;
+    margin: auto;
+    padding: 0;
+    height: 1px;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+.rd-divider-line{
+	font-size: 12px;
+}

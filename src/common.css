@@ -51,7 +51,6 @@ a {
 }
 
 
-
 .mb-10 {
 	margin-bottom: 10px;
 }
@@ -62,4 +61,14 @@ a {
 
 .pr-6 {
 	padding-right: 6px;
+}
+.margin-all {
+	margin: 12px;
+}
+/*hh*/
+.color-text{
+	color: #646464;
+}
+.border-color{
+	border: 1px solid #ddd;
 }

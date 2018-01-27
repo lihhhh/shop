@@ -10,7 +10,16 @@
 .rd-texnav-in{
 	width: 318px;
 	height: 30px;
+	line-height: 30px;
 	border: 1px solid #ccc;
+}
+.rd-texnav-right-inout-in2-icon{
+	height: 16px;
+	margin-top:3px; 
+}
+.rd-texnav-in .rd-texnav-in-p{
+	padding-left:20px;
+	font-size: 12px;
 }
 .rd-texnav-right{
 	height:100%;
@@ -18,12 +27,164 @@
 }
 .rd-texnav-right-inout{
 	width:530px;
-	height: 100%;
-	background-color: white;
-	margin: 15px; 
+	height: 100%; 
 }
 .rd-texnav-right-inout-in{
 	width: 100%;
 	height: 100px;
 	background-color: #fefefe;
+}
+.rd-texnav-right-inout-in2{
+	width: 530px;
+	height: 101px;
+	margin-bottom: 10px; 
+	background: #fefefe;
+}
+.rd-texnav-right-inout-in2-p{
+	position: relative;
+	width: 150px;
+	margin-top: 15px;
+	font-size: 12px;
+	font-weight: bold;
+    margin-left: 72px;
+	display: block;
+}
+.gicon-chevron-down {
+    background-position: -313px -119px;
+}
+[class*=" gicon-"], [class^=gicon-] {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-right: .3em;
+    line-height: 14px;
+    vertical-align: -2px;
+    background-image: url('../../static/gicon_black.png');
+    background-repeat: no-repeat;
+}
+.mgl5 {
+    margin-left: 5px;
+}
+.rd-texnav-right-inout-in2-icon a{
+	display: inline-block;
+    float: right;
+}
+.rd-texnav-right-inout-in2 .droplist-title {
+	text-align: right;
+	font-weight: normal;
+    color: #1C89D5;
+    cursor: pointer;
+}
+.rd-texnav-right-inout-in2 .rd-texnav-right-inout-in2-p-link{
+	display: inline-block;
+    width: 70px;
+    height: 20px;
+}
+.rd-texnav-right-inout-in2 .rd-texnav-right-inout-in2-p-link:hover {
+	color: black;
+	cursor: pointer;
+}
+.rd-texnav-right-inout-in2 .rd-texnav-right-inout-in2-p-link:hover .rd-texnav-right-inout-in2-hoverdiv {
+	background-color: pink !important;
+}
+.rd-texnav-right-inout-in2-hoverdiv{
+	display: block;
+    line-height: 26px;
+	position: absolute;
+	top: 32%;
+    left: 24%;
+	width: 150px;
+    padding: 5px 0;
+    font-size: 12px;
+    color: black;
+	z-index:1111;
+	border: 1px solid #ddd;
+    border-radius: 3px;
+    background: #fff;
+    overflow: hidden;
+    box-shadow: 2px 2px 6px rgba(0,0,0,.2);
+}
+.rd-texnav-right-inout-in2-hoverdiv ul li{
+	display: inline-block;
+    width: 50%;
+    float: left;
+    margin: 0;
+    text-align: center;
+}
+.droplist-menu li .rd-texnav-right-inout-in2-p-link {
+    display: block;
+    padding: 0 5px;
+    line-height: 30px;
+}
+.rd-texnav-right-inout-in2-hoverdiv ul li:hover{
+	background-color: blue;
+}
+.rd-texnav-right-inout-in2-hoverdiv ul li a{
+	color: black;
+}
+.rd-texnav-right-inout-in2-hoverdiv ul li:hover a{
+	color: white ;
+}
+.text-nav-name span{
+	display: inline-block;
+	float: left;
+}
+
+
+
+
+.gicon-arrow-up {
+    background-position: -289px -96px;
+}
+[class*=" gicon-"], [class^=gicon-] {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-right: .3em;
+    line-height: 14px;
+    vertical-align: -2px;
+    background-image: url('../../static/gicon_black.png');
+    background-repeat: no-repeat;
+}
+i, em {
+    font-style: normal;
+}
+.gicon-arrow-down {
+    background-position: -312px -96px;
+}
+.iconfont {
+    display: inline-block;
+    margin-top: 1px;
+    margin-right: 2px;
+    width: 20px;
+    height: 20px;
+    font-size: 18px;
+    background-size: 100%;
+    background-image: url(../../static/del.png);
+}
+
+
+.rd-texnav-right-inout-in-fiexd{
+	width: 530px;
+	height: 60px;
+	font-weight: 700;
+    font-size: 40px;
+    text-align:center;
+    cursor: pointer;
+	color: #999;
+	border: 1px dashed #999;
+	background: #fefefe
+}
+.text-nav-name {
+	margin-left: 60px;
+	line-height: 28px;
+    font-size: 12px;
+    font-weight: bold;
+}
+.text-nav-name input{
+	width: 240px;
+	height: 20px;
+	padding: 13px 10px;
+	border: 1px solid #ccc;
+	outline: none;
 }

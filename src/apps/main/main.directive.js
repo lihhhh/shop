@@ -69,7 +69,7 @@ shopApp.directive('rdMain',['rsMain','$timeout',function(rsMain,$timeout){
 	            },
 	            {
 	                'name': '商品列表',
-	                'type': 'a1'
+	                'type': 'rd-splist'
 	            },{
 	                'name': '商品搜索',
 	                'type': 'rd-search'
@@ -139,8 +139,9 @@ shopApp.directive('rdMain',['rsMain','$timeout',function(rsMain,$timeout){
             rsMain.getJson().then(function(_d){
         		console.log(_d);
         		var json = JSON.parse(_d.data.json);
-        		console.log('json:',json);
+        		
         		$scope.editors = JSON.parse(json.editors);
+        		console.log('json:',$scope.editors);
         	});
 
         	$scope.$watch('editors',()=>{

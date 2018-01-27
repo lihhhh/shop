@@ -38,11 +38,11 @@
 	width: 530px;
 	height: 101px;
 	margin-bottom: 10px; 
-	background: #fefefe;
+	position: relative;
+	/*background: #fefefe;*/
 }
 .rd-texnav-right-inout-in2-p{
 	position: relative;
-	width: 150px;
 	margin-top: 15px;
 	font-size: 12px;
 	font-weight: bold;
@@ -77,7 +77,6 @@
 }
 .rd-texnav-right-inout-in2 .rd-texnav-right-inout-in2-p-link{
 	display: inline-block;
-    width: 70px;
     height: 20px;
 }
 .rd-texnav-right-inout-in2 .rd-texnav-right-inout-in2-p-link:hover {
@@ -91,8 +90,8 @@
 	display: block;
     line-height: 26px;
 	position: absolute;
-	top: 32%;
-    left: 24%;
+	top: 53%;
+    left: 30%;
 	width: 150px;
     padding: 5px 0;
     font-size: 12px;
@@ -103,6 +102,9 @@
     background: #fff;
     overflow: hidden;
     box-shadow: 2px 2px 6px rgba(0,0,0,.2);
+}
+.rd-texnav-right-inout-in2-hoverdiv ul{
+	/*position: absolute;*/
 }
 .rd-texnav-right-inout-in2-hoverdiv ul li{
 	display: inline-block;
@@ -129,10 +131,6 @@
 	display: inline-block;
 	float: left;
 }
-
-
-
-
 .gicon-arrow-up {
     background-position: -289px -96px;
 }
@@ -162,8 +160,6 @@ i, em {
     background-size: 100%;
     background-image: url(../../static/del.png);
 }
-
-
 .rd-texnav-right-inout-in-fiexd{
 	width: 530px;
 	height: 60px;
@@ -187,4 +183,18 @@ i, em {
 	padding: 13px 10px;
 	border: 1px solid #ccc;
 	outline: none;
+}
+.rd-texnav-right-inout-in2-p-selectList{
+	display: inline-block;
+	cursor: pointer;
+    min-width: 10px;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 1;
+	color: #fff;
+    background-color: #5cb85c;
+}
+ .rd-texnav-selectList-active{
+    padding: 3px 7px; 
+	border-radius: 10px; 
 }

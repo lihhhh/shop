@@ -156,7 +156,7 @@ shopApp.directive('rdMain',['rsMain','$timeout',function(rsMain,$timeout){
         		try{
         			var json = JSON.parse(_d.data.json);
 	        		
-	        		$scope.editors = JSON.parse(json.editors);
+	        		$scope.editors = JSON.parse(json.json).editors;
 	        		console.log('json:',$scope.editors);
         		}catch(e){
         			console.log('没获取到模板数据');
@@ -179,7 +179,10 @@ shopApp.directive('rdMain',['rsMain','$timeout',function(rsMain,$timeout){
             // 保存json数据
             $scope.saveJson = function(){
             	var params = {
-            		editors:JSON.stringify($scope.editors)
+            		// editors:JSON.stringify($scope.editors)
+            		json:{
+            			editors:$scope.editors
+            		}
             	};
             	rsMain.saveJson(params).then(function(_d){
             		console.log(_d);

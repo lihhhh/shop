@@ -2,25 +2,28 @@ var express = require('express');
 var path = require('path');
 var fs = require('fs');
 
-var bodyParser = require('body-parser');  
-  
-// ...   
-  
-// create application/json parser  
-var jsonParser = bodyParser.json()  
-  
-// create application/x-www-form-urlencoded parser  
-var urlencodedParser = bodyParser.urlencoded({ extended: false })  
+var bodyParser = require('body-parser')
+
+ 
+
+ 
+
 
 module.exports = function(app){
+
+	// parse application/x-www-form-urlencoded
+	app.use(bodyParser.urlencoded({ extended: false }))
+
+	// parse application/json
+	app.use(bodyParser.json())  
 
 	app.get('/',function(req,res){
 		var filepath = path.join(__dirname,'../dist/index.html')
 		res.sendfile(filepath);
 	})
 
-	app.post('/WeChatData',urlencodedParser,function(req,res){
-		var query = req.query;
+	app.post('/WeChatData',function(req,res){
+		var query = req.body;
 		console.log(query);
 		fs.writeFile(__dirname+'/data.json', JSON.stringify(query), (err) => {
 		  if (err) throw err;

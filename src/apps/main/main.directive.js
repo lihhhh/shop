@@ -30,10 +30,11 @@ shopApp.directive('rdMain',['rsMain','$timeout',function(rsMain,$timeout){
 					    <div class="height-100">
 						    <div class="phone-header"></div>
 						    <div class="phone-status"><span class="phone-status-title">微信首页</span></div>
-						    <div class="phone-main height-100">
+						    <div class="phone-main height-100 ps-r">
 							    <ul>
 								    <li ng-repeat="editor in editors track by $index">
-									    <render editor="editor" editors="editors"></render>
+									    <div class='drag-here' ng-show="editor.drag.isDragHere">拖放在这里</div>
+									    <render  editor="editor" ng-class="{'is-drag':editor.drag.isDrag,'drag-up-animation':editor.drag.isDragUp}" ng-style="{'left':editor.drag.left+'px','top':editor.drag.top+'px'}" editors="editors"></render>
 								    </li>
 							    </ul>
 						    </div>
@@ -144,6 +145,12 @@ shopApp.directive('rdMain',['rsMain','$timeout',function(rsMain,$timeout){
 					hover : false
 				}
 
+				item.drag = {
+					isDrag : false,//是否正在拖拽
+					isDragUp : false,//拖拽放开动画
+					isDragHere : false
+				}
+
 
                 $scope.editors.push(item);
                 
@@ -165,14 +172,14 @@ shopApp.directive('rdMain',['rsMain','$timeout',function(rsMain,$timeout){
         	});
 
         	$scope.$watch('editors',()=>{
+        		$timeout(function(){
+        			$scope.editors.sort(function(a,b){
+	            		return a.idx - b.idx;
+	            	});
+	        		var _h = $('.phone-style ul').height();
 
-        		$scope.editors.sort(function(a,b){
-            		return a.idx - b.idx;
-            	});
-        		var _h = $('.phone-style ul').height();
-
-        		$scope.phoneHeight = _h>387?_h+223:600;
-
+	        		$scope.phoneHeight = _h>387?_h+223:600;
+        		},0)
         	},true)
 
 

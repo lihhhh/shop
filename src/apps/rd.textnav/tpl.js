@@ -1,5 +1,5 @@
 module.exports = `
-<div class="ps-r" ng-mouseover="editor.menu.hover = true;" ng-mouseout="editor.menu.hover = false;">
+<div class="ps-r mt-10" ng-mouseover="editor.menu.hover = true;" ng-mouseout="editor.menu.hover = false;">
 				<div class="rd-texnav-out ps-r" >
 					<div class="rd-texnav-in" ng-repeat="item in editor.model.textNavDatasDiv">
 					<p class="color-text rd-texnav-in-p" >{{item.selectName ?item.selectName:'请添加导航连接'}}</p>

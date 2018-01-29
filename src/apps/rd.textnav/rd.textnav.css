@@ -1,17 +1,19 @@
 .rd-texnav{
 	width: 318px;
 	background-color:#f9f9f9;
+
 }
 .rd-texnav-out{
 	width: 318px;
 	height: 100%;
 	margin: 0 auto;
+	border-bottom: 1px solid #ccc;
 }
 .rd-texnav-in{
 	width: 318px;
 	height: 30px;
 	line-height: 30px;
-	border: 1px solid #ccc;
+	border-top: 1px solid #ccc;
 }
 .rd-texnav-right-inout-in2-icon{
 	height: 16px;

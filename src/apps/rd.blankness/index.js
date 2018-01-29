@@ -30,9 +30,7 @@ shopApp.directive('rdBlankness', ['$timeout', 'rsCommon', function($timeout, rsC
 		`,
         link: function($scope) {
         	$scope.config = {
-        		moveX:'',
         		mousemove:function(cfg){
-        			debugger
         			if(!cfg.moveX) return;
         			$scope.ps.left+=cfg.moveX;
         			$scope.ps.left = $scope.ps.left<0?0:$scope.ps.left;

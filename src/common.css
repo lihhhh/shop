@@ -14,6 +14,10 @@ a {
 	position: relative;
 }
 
+.ps-a {
+	position: absolute;
+}
+
 .pull-left {
 	float: left;
 }
@@ -55,6 +59,10 @@ a {
 
 .mb-10 {
 	margin-bottom: 10px;
+}
+
+.mt-10 {
+	margin-top: 10px;
 }
 
 .pl-6 {

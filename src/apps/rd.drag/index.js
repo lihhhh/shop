@@ -6,7 +6,7 @@ import $ from 'jquery';
 
 var shopApp = angular.module('shopApp');
 
-shopApp.directive('rdDrag',['$timeout','rsCommon',function($timeout,rsCommon){
+shopApp.directive('rdDrag',['$timeout','rsCommon','eventbus',function($timeout,rsCommon,eventbus){
 	return {
 		restrict: 'AE',
 		scope: {
@@ -21,12 +21,121 @@ shopApp.directive('rdDrag',['$timeout','rsCommon',function($timeout,rsCommon){
 					<a href="javascript:">编辑</a>
 					<a href="javascript:" ng-click='deleteEditor($event)'>删除</a>
 				</div>
+				<div drag-component="config"></div>
 			</div>
 		`,
+		controller:function($scope){
+			var mainOffset,
+				renderList,
+				excEditor;//需要交换的数据
+
+			$scope.config = {
+        		cursor:'all-scroll',
+        		mousedown:function(cfg,e){
+        			mainOffset = $('.phone-main').offset();
+        			excEditor = '';
+        			
+
+        			// 鼠标按下时 记录拖动元素 原始坐标
+        			$scope.drag.startLeft=e.pageX-mainOffset.left-e.offsetX;
+        			$scope.drag.startTop=e.pageY-mainOffset.top-e.offsetY;
+        		},
+        		startDrag:function(cfg,e){
+        			renderList = $('.render-box>*');
+        			
+        			// 设置显示拖到这里
+        			$scope.editor.drag.isDragHere = true;
+        			$scope.editors.map((it)=>{it.drag.isDrag=false;});
+        			$scope.editors.isDrag = false;
+        		},
+        		mousemove:function(cfg,e){
+        			if(!cfg.moveX) return;
+        			
+        			// 设置正在拖拽
+        			$scope.editor.drag.isDrag = true;
+        			$scope.drag.left=e.pageX-mainOffset.left-cfg.downOffset.left;
+        			$scope.drag.top=e.pageY-mainOffset.top-cfg.downOffset.top;
+        			$scope.editor.drag = $scope.drag;
+        			impact();
+        		},
+        		mouseup:function(cfg,e){
+        			$scope.drag.left = $scope.drag.startLeft;
+        			$scope.drag.top = $scope.drag.startTop;
+        			$scope.editor.drag.isDragUp = true;
+        			$timeout(function(){
+        				$scope.editors.map((it)=>{it.drag.isDragHere=false;});
+        				$scope.editor.drag.isDrag = false;
+        				$scope.editor.drag.isDragUp = false;
+
+        				if(!excEditor) return;
+        				var excIdx = excEditor.idx;
+        				var dragIdx = $scope.editor.idx;
+
+        				$scope.editor.idx = excIdx;
+        				excEditor.idx = dragIdx;
+
+        				$scope.editors.sort(function(a,b){
+		            		return a.idx - b.idx;
+		            	});
+
+        				var beforeEditors = $scope.editors.slice($scope.editor.idx);
+
+        				console.log(beforeEditors);
+        				beforeEditors.map((it,i)=>{
+        					it.idx = excIdx + i + 1;
+        				})
+
+        				eventbus.broadcast('render',{});
+        				
+        			},600)
+        		}
+        	};
+
+        	$scope.drag = {
+        		top:0,
+        		left:0
+        	};
+
+        	/*碰撞检测*/
+        	function impact(){
+        		var dragEl = $('.is-drag');
+        		if(!dragEl.length) return;
+        		var offset = dragEl.offset();
+// debugger
+        		for(var i=0;i<renderList.length;i++){
+        			var _this = renderList[i];
+        			if($(_this).parents('.is-drag').length) continue;
+        			var p1X = $(_this).offset().left;
+        			var p1Y = $(_this).offset().top;
+
+        			var p2X = p1X+$(_this).width();
+        			var p2Y = p1Y+$(_this).height()/2;
+
+        			var m1X = offset.left;
+        			var m1Y = offset.top;
+
+        			var m2X = m1X+dragEl.width();
+        			var m2Y = m1Y+dragEl.height();
+
+        			// console.log('p1X',p1X,'p2X',p2X,'p1Y',p1Y,'p2Y',p2Y);
+        			// console.log('m1X',m1X,'m2X',m2X,'m1Y',m1Y,'m2Y',m2Y);
+        			if(!(m1X>p2X || m2X<p1X || m1Y>p2Y || m2Y<p1Y)){
+        				$scope.editors.map((it)=>{it.drag.isDragHere=false;});
+        				$scope.editors[i].drag.isDragHere = true;
+        				excEditor = $scope.editors[i];
+
+        				$scope.drag.startLeft=p1X-mainOffset.left;
+	        			$scope.drag.startTop=p1Y-mainOffset.top-80;
+        				return;
+        			}
+        		}
+        	}
+		},
 		link: function($scope){
+			
+
 
 			$scope.moveEditor = function(event,num){
-				debugger
 				//console
 				var nextIdx,
 					thisLast,//数组中相邻的上一个元素
@@ -99,6 +208,7 @@ shopApp.directive('rdDrag',['$timeout','rsCommon',function($timeout,rsCommon){
 				})
 				$scope.editor.menu.isShow = !$scope.editor.menu.isShow;
 			}
+
 
 			
 

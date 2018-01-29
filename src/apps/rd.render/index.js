@@ -1,8 +1,9 @@
 import angular from 'angular';
+require('./index.css');
 
 var shopApp = angular.module('shopApp');
 
-shopApp.directive('render',['$compile',function($compile){
+shopApp.directive('render',['$compile','eventbus','$timeout',function($compile,eventbus,$timeout){
 	return {
 		restrict: 'AE',
 		transclude:true,
@@ -19,8 +20,9 @@ shopApp.directive('render',['$compile',function($compile){
 			draw();
 
 			function draw(){
+				console.log('render');
 				if($scope.editor.type){
-					var el = '<'+$scope.editor.type+' editor="editor" editors="editors"></'+$scope.editor.type+'>';
+					var el = '<'+$scope.editor.type+'  editor="editor" class="render-box" editors="editors"></'+$scope.editor.type+'>';
 
 					el = $compile(el)($scope);
 
@@ -29,8 +31,12 @@ shopApp.directive('render',['$compile',function($compile){
 				}
 			}
 
+			eventbus.subscribe('render',()=>{
+				$timeout(()=>{draw();},0);
+			});
+
 			$scope.$watch('editor.idx',function(){
-				draw();
+				$timeout(()=>{draw();},0);
 			});
 		}
 	};

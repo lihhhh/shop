@@ -12,36 +12,63 @@ shopApp.directive('dragComponent', ['$timeout', function ($timeout) {
     scope:{ 
       config:'=dragComponent'
     },
-    template: ['<div ng-mousedown="dragDown()" ng-style="style">',
+    template: ['<div ng-mousedown="dragDown($event)" ng-style="style">',
               '</div>'].join(''),
     link: function ($scope, $element, $attrs) {
+
+      // 开始拖动锁  只在第一次拖动时出发 移动时锁上
+      var startDragLock =  false;
+
+      $scope.config = $scope.config||{};
+
+      var cursor = $scope.config.cursor || 'inherit';
       $scope.style = {
         'width' : '100%',
-        'height' : '100%'
+        'height' : '100%',
+        // 'background' : 'red',
+        'cursor' : cursor
       }
 
       
 
-      $scope.dragDown = function(){
-        debugger
+      $scope.dragDown = function(e){
         $scope.config.isMouseDown = true;
+        startDragLock = false;
 
-        $(document).on('mouseup',function(){
-         // console.log('mouseup');
+        // 鼠标在在当前拖动元素中按下的位置
+        $scope.config.downOffset = {
+          left:e.offsetX,
+          top:e.offsetY,
+        };
+
+        if(typeof $scope.config.mousedown === 'function'){
+          $scope.config.mousedown($scope.config,e);
+        }
+
+        $(document).on('mouseup.drag.up',function(e){
           $scope.config.isMouseDown = false;
-          $(document).unbind('mouseup');
-          $(document).unbind('mousemove');
+          $(document).unbind('.drag');
           $scope.beforeX = null;
           $scope.beforeY = null;
           $scope.config.moveX = 0;
           $scope.config.moveY = 0;
           if(typeof $scope.config.mouseup === 'function'){
-            $scope.config.mouseup($scope.config);
+            $scope.config.mouseup($scope.config,e);
+          }
+          // 结束拖动
+          if(typeof $scope.config.endDrag === 'function'){
+            startDragLock = false;
+            $scope.config.endDrag($scope.config,e);
           }
         })
 
-        $(document).on('mousemove',function(e){
-          debugger
+        $(document).on('mousemove.drag.move',function(e){
+          // 开始拖动
+          if(!startDragLock && typeof $scope.config.startDrag === 'function'){
+            startDragLock = true;
+            $scope.config.startDrag($scope.config,e);
+          }
+
           if(/\d+/.test($scope.beforeX)&&/\d+/.test($scope.beforeY)){
             $scope.config.moveX = e.pageX - $scope.beforeX;
             $scope.config.moveY = e.pageY - $scope.beforeY;
@@ -49,7 +76,7 @@ shopApp.directive('dragComponent', ['$timeout', function ($timeout) {
           $scope.beforeX = e.pageX;
           $scope.beforeY = e.pageY;
           if(typeof $scope.config.mousemove === 'function'){
-            $scope.config.mousemove($scope.config);
+            $scope.config.mousemove($scope.config,e);
           }
           
           $scope.$apply(function(){

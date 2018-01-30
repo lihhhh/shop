@@ -25,9 +25,12 @@ shopApp.directive('rdDrag',['$timeout','rsCommon','eventbus',function($timeout,r
 			</div>
 		`,
 		controller:function($scope){
-			var mainOffset,
-				renderList,
-				excEditor;//需要交换的数据
+			
+		},
+		link: function($scope){
+			var mainOffset={};
+			var	renderList='';
+			var	excEditor='';
 
 			$scope.config = {
         		cursor:'all-scroll',
@@ -103,7 +106,6 @@ shopApp.directive('rdDrag',['$timeout','rsCommon','eventbus',function($timeout,r
         		var dragEl = $('.is-drag');
         		if(!dragEl.length || !renderList) return;
         		var offset = dragEl.offset();
-// debugger
         		for(var i=0;i<renderList.length;i++){
         			var _this = renderList[i];
         			if($(_this).parents('.is-drag').length) continue;
@@ -132,9 +134,6 @@ shopApp.directive('rdDrag',['$timeout','rsCommon','eventbus',function($timeout,r
         			}
         		}
         	}
-		},
-		link: function($scope){
-			
 
 
 			$scope.moveEditor = function(event,num){

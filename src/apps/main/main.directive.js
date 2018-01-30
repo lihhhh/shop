@@ -156,22 +156,28 @@ shopApp.directive('rdMain',['rsMain','$timeout',function(rsMain,$timeout){
                 
                 // 设置滚动条到最底部
                 $(document).scrollTop($('.center-phone').get(0).scrollHeight-600);
+                calcPhoneMainHeight();
             }
 
-            rsMain.getJson().then(function(_d){
-        		console.log(_d);
-        		try{
-        			var json = JSON.parse(_d.data.json);
+         //    rsMain.getJson().then(function(_d){
+        	// 	console.log(_d);
+        	// 	try{
+        	// 		var json = JSON.parse(_d.data.json);
 	        		
-	        		$scope.editors = JSON.parse(json.json).editors;
-	        		console.log('json:',$scope.editors);
-        		}catch(e){
-        			console.log('没获取到模板数据');
-        		}
+	        // 		$scope.editors = JSON.parse(json.json).editors;
+	        // 		console.log('json:',$scope.editors);
+        	// 	}catch(e){
+        	// 		console.log('没获取到模板数据');
+        	// 	}
         		
-        	});
+        	// });
 
-        	$scope.$watch('editors',()=>{
+        	$scope.$watch('editors.model',()=>{
+	        	calcPhoneMainHeight();
+        	},true)
+
+        	function calcPhoneMainHeight(){
+        		console.log('计算main高度');
         		$timeout(function(){
         			$scope.editors.sort(function(a,b){
 	            		return a.idx - b.idx;
@@ -180,7 +186,7 @@ shopApp.directive('rdMain',['rsMain','$timeout',function(rsMain,$timeout){
 
 	        		$scope.phoneHeight = _h>387?_h+223:600;
         		},0)
-        	},true)
+        	}
 
 
             // 保存json数据

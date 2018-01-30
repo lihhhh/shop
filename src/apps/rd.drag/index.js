@@ -175,6 +175,10 @@ shopApp.directive('rdDrag',['$timeout','rsCommon','eventbus',function($timeout,r
 					thisBefore.idx = tempIdx;
 				}
 
+				
+
+            	// eventbus.broadcast('render',{});
+
 
 
 

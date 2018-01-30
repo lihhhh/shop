@@ -202,7 +202,6 @@ shopApp.directive('rdSplist',['$timeout',function($timeout){
 			];
 
 			$scope.selectClick=function(){
-				debugger
 				$scope.editor.model.oneYxj;
 			}
 			if(!$scope.editor.model){
@@ -255,7 +254,7 @@ shopApp.directive('rdSplist',['$timeout',function($timeout){
 			},true)
 
 			function changeBjfs(){
-				if(!$scope.editor.model.bjfs) return;
+				if(!$scope.editor.model || !$scope.editor.model.bjfs) return;
 				if($scope.editor.model.bjfs.code==1){
 					$scope.editor.model.xszj[0].select = false;
 				}else if($scope.editor.model.bjfs.code==4){

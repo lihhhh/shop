@@ -39,6 +39,8 @@ shopApp.directive('dragComponent', ['$timeout', function ($timeout) {
         $scope.config.downOffset = {
           left:e.offsetX,
           top:e.offsetY,
+          clientX:e.clientX,
+          clientY:e.clientY,
         };
 
         if(typeof $scope.config.mousedown === 'function'){
@@ -64,7 +66,7 @@ shopApp.directive('dragComponent', ['$timeout', function ($timeout) {
 
         $(document).on('mousemove.drag.move',function(e){
           // 开始拖动
-          if(!startDragLock && typeof $scope.config.startDrag === 'function'){
+          if(!startDragLock && (Math.abs(e.clientY-$scope.config.downOffset.clientY)>20 || Math.abs(e.clientX-$scope.config.downOffset.clientX)>20) && typeof $scope.config.startDrag === 'function'){
             startDragLock = true;
             $scope.config.startDrag($scope.config,e);
           }

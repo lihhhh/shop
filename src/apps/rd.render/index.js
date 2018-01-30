@@ -32,6 +32,7 @@ shopApp.directive('render',['$compile','eventbus','$timeout',function($compile,e
 			}
 
 			eventbus.subscribe('render',()=>{
+				draw();
 				$timeout(()=>{draw();},0);
 			});
 

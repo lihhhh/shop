@@ -62,6 +62,7 @@ shopApp.directive('rdDrag',['$timeout','rsCommon','eventbus',function($timeout,r
         			$scope.drag.left = $scope.drag.startLeft;
         			$scope.drag.top = $scope.drag.startTop;
         			$scope.editor.drag.isDragUp = true;
+
         			$timeout(function(){
         				$scope.editors.map((it)=>{it.drag.isDragHere=false;});
         				$scope.editor.drag.isDrag = false;
@@ -84,8 +85,9 @@ shopApp.directive('rdDrag',['$timeout','rsCommon','eventbus',function($timeout,r
         				beforeEditors.map((it,i)=>{
         					it.idx = excIdx + i + 1;
         				})
-
+        				// $('render').map(function(){$(this).html('')})
         				eventbus.broadcast('render',{});
+        				
         				
         			},600)
         		}
@@ -99,7 +101,7 @@ shopApp.directive('rdDrag',['$timeout','rsCommon','eventbus',function($timeout,r
         	/*碰撞检测*/
         	function impact(){
         		var dragEl = $('.is-drag');
-        		if(!dragEl.length) return;
+        		if(!dragEl.length || !renderList) return;
         		var offset = dragEl.offset();
 // debugger
         		for(var i=0;i<renderList.length;i++){

@@ -1,0 +1,39 @@
+.advert-img{
+	width: 318px;
+	height: 320px;
+	margin-bottom:10px; 
+	background: url('../../static/waitupload.png')   no-repeat;
+	background-size: 100% 100%;
+}
+.advert-up{
+	width: 537px;
+	height: 30px;
+	font-size: 12px;
+	font-weight: bold;
+}
+.advert-up-one{
+	margin-left:60px; 
+	margin-top:15px; 
+}
+.advert-up-one .one-span{
+	vertical-align: -2px;
+}
+.advert-down-two{
+	margin-left:36px;
+	margin-top: 20px;  
+}
+
+.advert-center{
+	width: 537px;
+	height: 135px;
+	margin: 10px 0;
+	border: 1px solid #ddd;
+	background-color: #fefefe;
+
+}
+.advert-down{
+	width: 537px;
+	height: 62px;
+	background-color: pink;
+
+}

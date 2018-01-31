@@ -85,7 +85,7 @@ shopApp.directive('rdMain',['rsMain','$timeout',function(rsMain,$timeout){
 	            },
 	            {
 	                'name': '图片广告',
-	                'type': 'a1'
+	                'type': 'rd-advert'
 	            },{
 	                'name': '分割线',
 	                'type': 'rd-divider'
@@ -159,18 +159,18 @@ shopApp.directive('rdMain',['rsMain','$timeout',function(rsMain,$timeout){
                 calcPhoneMainHeight();
             }
 
-         //    rsMain.getJson().then(function(_d){
-        	// 	console.log(_d);
-        	// 	try{
-        	// 		var json = JSON.parse(_d.data.json);
+            rsMain.getJson().then(function(_d){
+        		console.log(_d);
+        		try{
+        			var json = JSON.parse(_d.data.json);
 	        		
-	        // 		$scope.editors = JSON.parse(json.json).editors;
-	        // 		console.log('json:',$scope.editors);
-        	// 	}catch(e){
-        	// 		console.log('没获取到模板数据');
-        	// 	}
+	        		$scope.editors = JSON.parse(json.json).editors;
+	        		console.log('json:',$scope.editors);
+        		}catch(e){
+        			console.log('没获取到模板数据');
+        		}
         		
-        	// });
+        	});
 
         	$scope.$watch('editors.model',()=>{
 	        	calcPhoneMainHeight();

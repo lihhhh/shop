@@ -35,6 +35,10 @@ ul {
     user-select:none;
 }
 
+.phone-main img {
+    width: 310px;
+}
+
 .left-menu {
     position: fixed;
     /*margin-top: 80px;*/

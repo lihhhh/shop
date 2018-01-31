@@ -13,6 +13,7 @@ shopApp.directive('rdTips',[function(){
 			</div>
 		`,
 		link: function($scope){
+			// alert('tips');
 		}
 	};
 }]);

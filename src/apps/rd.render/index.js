@@ -33,11 +33,14 @@ shopApp.directive('render',['$compile','eventbus','$timeout',function($compile,e
 
 			eventbus.subscribe('render',()=>{
 				draw();
-				$timeout(()=>{draw();},0);
+				// $timeout(()=>{draw();},0);
 			});
 
 			$scope.$watch('editor.idx',function(){
-				$timeout(()=>{draw();},0);
+				$scope.editors.sort(function(a,b){
+            		return a.idx - b.idx;
+            	});
+				draw();
 			});
 		}
 	};

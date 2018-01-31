@@ -38,8 +38,9 @@ shopApp.directive('rdUeditor',['$timeout','$compile','eventbus',function($timeou
 		link: function($scope,$ele){
 			i++
 			$scope.idx=i;
+			// if(i%2) return;
 			$timeout(function(){
-				if(!i%2) return;
+				if(!$('#myEditor'+$scope.idx).length) return;
 				// alert($scope.idx);
 				// UM.getEditor('myEditor'+$scope.idx).destroy();
 				var um = UM.getEditor('myEditor'+$scope.idx);
@@ -47,7 +48,7 @@ shopApp.directive('rdUeditor',['$timeout','$compile','eventbus',function($timeou
 				debugger
 				um.addListener("contentChange",function(){
 					draw('<div>'+um.getContent()+'</div>');
-					$scope.editor.model.edInnerHTML = um.getContent('<div>'+um.getContent()+'</div>');
+					$scope.editor.model.edInnerHTML = '<div>'+um.getContent()+'</div>';
 					// 刷新手机内容区高度
 				    eventbus.broadcast('calc.phone.main.height',{});
 				});
@@ -56,7 +57,7 @@ shopApp.directive('rdUeditor',['$timeout','$compile','eventbus',function($timeou
 
 				if(!$scope.editor.model){
 					$scope.editor.model = {
-						edInnerHTML: um.getContent()
+						edInnerHTML: '<div>'+um.getContent()+'</div>'
 					};
 				}else{
 					um.setContent($scope.editor.model.edInnerHTML);

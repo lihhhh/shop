@@ -43,5 +43,6 @@ module.exports = function(app){
 	})
 
 	app.use(express.static(path.join(__dirname,'../dist')));
+	app.use(express.static(path.join(__dirname,'../src/ueditor')));
 
 }

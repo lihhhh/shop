@@ -88,6 +88,7 @@ shopApp.directive('rdDrag',['$timeout','rsCommon','eventbus',function($timeout,r
         				beforeEditors.map((it,i)=>{
         					it.idx = excIdx + i + 1;
         				})
+        				$scope.$apply();
         				// $('render').map(function(){$(this).html('')})
         				eventbus.broadcast('render',{});
         				

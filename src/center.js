@@ -10,3 +10,4 @@ require("./apps/rd.splist");
 require("./apps/rd.textnav");
 require("./apps/rd.tips");
 require("./apps/rd.title");
+require("./apps/rd.ueditor");

@@ -5,9 +5,11 @@ import _ from 'lodash';
 import img from './../../static/add.png';
 
 
+
+
 var shopApp = angular.module('shopApp');
 
-shopApp.directive('rdMain',['rsMain','$timeout',function(rsMain,$timeout){
+shopApp.directive('rdMain',['rsMain','$timeout','eventbus',function(rsMain,$timeout,eventbus){
 	return {
 		restrict : 'AE',
 		template : `
@@ -58,7 +60,7 @@ shopApp.directive('rdMain',['rsMain','$timeout',function(rsMain,$timeout){
 			$scope.editorList = [
 				{
 	                'name': '富文本',
-	                'type': 'a1'
+	                'type': 'rd-ueditor'
 	            },
 				{
 	                'name': '标题',
@@ -187,6 +189,12 @@ shopApp.directive('rdMain',['rsMain','$timeout',function(rsMain,$timeout){
 	        		$scope.phoneHeight = _h>387?_h+223:600;
         		},0)
         	}
+
+        	eventbus.subscribe('calc.phone.main.height',()=>{
+				calcPhoneMainHeight();
+			});
+
+
 
 
             // 保存json数据

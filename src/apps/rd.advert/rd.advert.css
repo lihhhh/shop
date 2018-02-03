@@ -1,18 +1,18 @@
 .advert-img{
 	width: 318px;
 	height: 320px;
-	margin-bottom:10px; 
-	background: url('../../static/waitupload.png')   no-repeat;
-	background-size: 100% 100%;
 }
 .advert-up{
 	width: 537px;
-	height: 30px;
+	/* height: 30px; */
 	font-size: 12px;
 	font-weight: bold;
 }
+.advert-up  .style-group {
+	cursor: pointer;
+}
 .advert-up-one{
-	margin-left:60px; 
+	margin-left:57px; 
 	margin-top:15px; 
 }
 .advert-up-one .one-span{
@@ -20,14 +20,18 @@
 	background: red;
 }
 .advert-down-two{
-	margin-left:36px;
+	margin-left:33px;
 	margin-top: 20px;  
+}
+
+.advert-down-three {
+	margin-top: 20px;
 }
 
 .advert-center{
 	width: 537px;
 	height: 135px;
-	margin: 10px 0;
+	margin: 0 0 10px 0;
 	border: 1px solid #ddd;
 	background-color: #fefefe;
 
@@ -37,4 +41,90 @@
 	height: 62px;
 	background-color: pink;
 
+}
+
+.advert-radius-box {
+	height: 20px;
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	text-align: center;
+	padding-bottom: 4px;
+}
+
+.advert-radius-box>div {
+	display: inline-block;
+}
+
+.advert-radius-box>div span:first-child {
+	background: #be0000;
+}
+
+.advert-radius-box span {
+	display: inline-block;
+	width: 6px;
+	height: 6px;
+	border-radius: 3px;
+	background: #898989;
+	margin: 0 3px;
+}
+
+.advert-img-box {
+	position: absolute;
+	cursor: pointer;
+	left: 10px;
+	top: 28px;
+	width: 90px;
+	height: 90px;
+	background: pink;
+}
+
+.rd-advert-p {
+    position: relative;
+    margin-top: 8px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-left: 110px;
+    display: block;
+}
+
+.rd-advert-p input {
+	height: 30px;
+	width: 262px;
+}
+
+.rd-advert-div span {
+	display: inline-block;
+	width: 60px;
+	text-align: right;
+	margin-left: 0;
+	margin-right: 10px;
+}
+
+.rd-advert-box-repeat {
+	width: 530px;
+    height: 144px;
+    margin-bottom: 10px;
+    position: relative;
+}
+.advert-img-box:hover .advert-img-box-top {
+	display: block;
+}
+.advert-img-box-top {
+	display: none;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    background-color: rgba(0,0,0,.3);
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+}
+
+.webuploader-element-invisible {
+	display: none;
 }

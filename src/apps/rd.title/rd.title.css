@@ -14,15 +14,19 @@
 	height: 100%;
 }
 
+.title-style>span {
+	padding:0 10px;
+}
+
 .title-style-1 {
     background: #28c192;
-    padding: 8px 10px;
+    padding: 8px 0;
     color: #fff !important;
 }
 
 .title-style-2 {
     font-size: 14px;
-    padding: 8px 10px;
+    padding: 8px 0;
 	font-weight: bold;
 	height: 100%;
 	background: white;
@@ -30,17 +34,27 @@
 }
 
 .title-style-3 {
-    /*background: red;*/
-    padding: 8px 10px;
     color: #878687;
-    height: 60%;
+    text-align: center;
+}
+.title-style-3>span{
+	position: absolute;
+    left: 44%;
+    top: 17%;
+    background-color: #f9f9f9;
 }
 
 .title-style-4 {
     background: #fff;
-    padding: 8px 10px;
-    border-left:2px solid red; 
+    padding: 8px 0;
+    
     color:#707070;
+}
+
+.title-style-4>span {
+	display: inline-block;
+	padding-left: 8px;
+	border-left:2px solid red; 
 }
 
 /* .rd-title-tips {  //hhh
@@ -73,6 +87,33 @@
 }
 .style-group {
 	font-size: 12px;
-	padding-left: 8px;
-	padding-right: 12px;
+	margin-left: 8px;
+	margin-right: 12px;
+}
+.rd-title-box-line{
+	height: 2px;
+	width: 100%;
+	position: absolute;
+	top:46%;
+	background-color: #efefef;
+}
+.text-style1{
+	text-align:left !important;
+}
+
+.text-style2{
+	text-align:center !important;
+}
+
+.text-style3{
+	text-align:right !important;
+}
+
+.text-style1>span {
+	left: 0;
+}
+
+
+.text-style3>span {
+	left: 76%;
 }

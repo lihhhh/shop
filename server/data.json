@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-{"json":"{\"editors\":[]}"}
-=======
-{"TemplateData":"{\"editors\":[{\"name\":\"富文本\",\"type\":\"rd-ueditor\",\"idx\":1,\"menu\":{\"isShow\":true,\"hover\":false},\"drag\":{\"isDrag\":false,\"isDragUp\":false,\"isDragHere\":false},\"model\":{\"edInnerHTML\":\"<div style=\\\"overflow:hidden\\\"><p><img src=\\\"http://127.0.0.1:9000/upload/7ddf3ca0ffa1afa92fdaaad9c8f6711f_2018_1_6_17_5.jpg\\\"/>『富文本编辑器』</p></div>\"}}]}"}
->>>>>>> 1e63a5e87bf3255e6973efe2dc71c4f70be8f378
+{"TemplateData":"{\"editors\":[]}"}

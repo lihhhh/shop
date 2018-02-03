@@ -27,19 +27,20 @@
 	height: 100%;
 	background: white;
 	color: #222;
-	text-align: center;
 }
 
 .title-style-3 {
-    background: red;
+    /*background: red;*/
     padding: 8px 10px;
-    color: #fff;
+    color: #878687;
+    height: 60%;
 }
 
 .title-style-4 {
-    background: black;
+    background: #fff;
     padding: 8px 10px;
-    color: #fff;
+    border-left:2px solid red; 
+    color:#707070;
 }
 
 /* .rd-title-tips {  //hhh

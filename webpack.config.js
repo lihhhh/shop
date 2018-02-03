@@ -48,7 +48,7 @@ module.exports = function(env){
         devServer: {
             contentBase: path.join(__dirname, "dist"),
             compress: true,
-            port: 9000,
+            port: 8888,
             proxy: {
                 '*': {
                     target: 'http://localhost:3000',

@@ -1,11 +1,12 @@
 // window.UMEDITOR_HOME_URL = '/abc';
-import $ from 'jquery';
 import angular from 'angular';
+
+window.UMEDITOR_HOME_URL = '/Js/Seller/';
 require('./index.css');
 require('./../../ueditor/themes/default/css/umeditor.css');
 
 require('./../../ueditor/umeditor.config.js');
-require('./../../ueditor/umeditor.min.js');
+require('./../../ueditor/umeditor.js');
 require('./../../ueditor/lang/zh-cn/zh-cn.js');
 
 
@@ -44,11 +45,21 @@ shopApp.directive('rdUeditor',['$timeout','$compile','eventbus',function($timeou
 				// alert($scope.idx);
 				// UM.getEditor('myEditor'+$scope.idx).destroy();
 				var um = UM.getEditor('myEditor'+$scope.idx);
-				console.log(um);
-				debugger
+				console.log('运行');
 				um.addListener("contentChange",function(){
-					draw('<div>'+um.getContent()+'</div>');
-					$scope.editor.model.edInnerHTML = '<div>'+um.getContent()+'</div>';
+					var el = getContent(um);
+					draw(el);
+					debugger
+					$scope.editor.model.edInnerHTML = el;
+					// 刷新手机内容区高度
+				    eventbus.broadcast('calc.phone.main.height',{});
+				});
+
+				um.addListener("focus",function(){
+					var el = getContent(um);
+					draw(el);
+					debugger
+					$scope.editor.model.edInnerHTML = el;
 					// 刷新手机内容区高度
 				    eventbus.broadcast('calc.phone.main.height',{});
 				});
@@ -57,14 +68,20 @@ shopApp.directive('rdUeditor',['$timeout','$compile','eventbus',function($timeou
 
 				if(!$scope.editor.model){
 					$scope.editor.model = {
-						edInnerHTML: '<div>'+um.getContent()+'</div>'
+						edInnerHTML: getContent(um)
 					};
 				}else{
 					um.setContent($scope.editor.model.edInnerHTML);
 				}
 
-				draw('<div>'+$scope.editor.model.edInnerHTML+'</div>')
+				draw(getContent(um))
 			})
+
+			function getContent(um){
+				var el = '';
+				el = '<div style="overflow:hidden">'+um.getContent()+'</div>';
+				return el;
+			}
 
 
 			function draw(el){

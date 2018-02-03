@@ -27,6 +27,7 @@ ul {
 }
 
 .phone-main {
+    min-height: 388px;
     width: 320px;
     margin: 0 auto;
     background: #f9f9f9;

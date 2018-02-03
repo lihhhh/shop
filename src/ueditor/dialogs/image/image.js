@@ -141,7 +141,7 @@
         uploadTpl: '<div class="edui-image-upload%%">' +
             '<span class="edui-image-icon"></span>' +
             '<form class="edui-image-form" method="post" enctype="multipart/form-data" target="up">' +
-            '<input style=\"filter: alpha(opacity=0);\" class="edui-image-file" type="file" hidefocus name="upfile" accept="image/gif,image/jpeg,image/png,image/jpg,image/bmp"/>' +
+            '<input style=\"filter: alpha(opacity=0);\" class="edui-image-file" type="file" hidefocus name="file" accept="image/gif,image/jpeg,image/png,image/jpg,image/bmp"/>' +
             '</form>' +
 
             '</div>',
@@ -185,8 +185,10 @@
         },
         uploadComplete: function(r){
             var me = this;
+            debugger
             try{
                 var json = eval('('+r+')');
+                json.state = 'SUCCESS';
                 Base.callback(me.editor, me.dialog, json.url, json.state);
             }catch (e){
                 var lang = me.editor.getLang('image');
@@ -194,9 +196,8 @@
             }
         },
         submit: function (callback) {
-
             var me = this,
-                input = $( '<input style="filter: alpha(opacity=0);" class="edui-image-file" type="file" hidefocus="" name="upfile" accept="image/gif,image/jpeg,image/png,image/jpg,image/bmp">'),
+                input = $( '<input style="filter: alpha(opacity=0);" class="edui-image-file" type="file" hidefocus="" name="file" accept="image/gif,image/jpeg,image/png,image/jpg,image/bmp">'),
                 input = input[0];
 
             $(me.dialog).delegate( ".edui-image-file", "change", function ( e ) {
@@ -208,6 +209,7 @@
                 $('<iframe name="up"  style="display: none"></iframe>').insertBefore(me.dialog).on('load', function(){
                     var r = this.contentWindow.document.body.innerHTML;
                     if(r == '')return;
+                    r = $(r).text();
                     me.uploadComplete(r);
                     $(this).unbind('load');
                     $(this).remove();
@@ -263,7 +265,7 @@
                             var xhr = new XMLHttpRequest();
                             xhr.open("post", me.editor.getOpt('imageUrl') + "?type=ajax", true);
                             xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-
+debugger
                             //模拟数据
                             var fd = new FormData();
                             fd.append(me.editor.getOpt('imageFieldName'), f);

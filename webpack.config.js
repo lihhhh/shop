@@ -3,16 +3,19 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MinifyPlugin = require("babel-minify-webpack-plugin");
 var fs = require('fs');
 
-module.exports = function(cfg){
+module.exports = function(env){
+    // console.log(env);
     var dirs = fs.readdirSync(__dirname+'/src/apps');
     console.log(dirs);
     var str='';
+    if(env == 1) str+='window._env = 1;\r\n\r\n';
     dirs.map(function(it){
         str+= 'require("./apps/'+it+'");\r\n';
     })
+    
     fs.writeFileSync(__dirname+'/src/center.js', str);
 
-    return {
+    var cfg = {
         entry: './src/app.js',
         output: {
             path: path.resolve(path.join(__dirname,'dist')),
@@ -36,8 +39,8 @@ module.exports = function(cfg){
                 use: {
                     loader:'file-loader',
                     options: {
-                        name:'Images/Seller/Template/WeChat/[hash].[ext]'
-                        // name:'/Images/Seller/Template/WeChat/[hash].[ext]'
+                        // name:'Images/Seller/Template/WeChat/[hash].[ext]'
+                        name: env==1?'/Images/Seller/Template/WeChat/[hash].[ext]':'Images/Seller/Template/WeChat/[hash].[ext]'
                     }
                 }
             },]
@@ -57,9 +60,14 @@ module.exports = function(cfg){
             new HtmlWebpackPlugin({
                 template: './src/index.html',
                 filename: 'index.html'
-            }),
-            // 代码压缩
-            // new MinifyPlugin()
+            })
         ]
     };
+
+    if(env == 1) {
+        // 代码压缩
+        cfg.plugins.push(new MinifyPlugin());
+    }
+
+    return cfg;
 }

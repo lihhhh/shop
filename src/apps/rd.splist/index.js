@@ -1,5 +1,5 @@
 import angular from 'angular';
-import $ from 'jquery';
+//import $ from 'jquery';
 import styles from './index.css';
 import shopView1 from '../../static/shopView1.jpg';
 import shopView2 from '../../static/shopView2.jpg';

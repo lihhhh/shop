@@ -1,7 +1,7 @@
 import angular from 'angular';
 import _ from 'lodash';
 
-import $ from 'jquery';
+//import $ from 'jquery';
 
 var shopApp = angular.module('shopApp');
 

@@ -9,7 +9,7 @@ shopApp.service('rsMain',['$http','$q',function($http,$q){
 			method:'Post',
 			// data:params,
 			data:'json='+JSON.stringify(params.json),
-			url:'WeChatData',
+			url:'SaveWeChatData',
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 		})
 	};
@@ -19,7 +19,7 @@ shopApp.service('rsMain',['$http','$q',function($http,$q){
 		return $http({
 			method:'GET',
 			params:params,
-			url:'WeChatData'
+			url:'GetWeChatData'
 		})
 	}
 

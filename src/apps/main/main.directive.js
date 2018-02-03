@@ -1,4 +1,4 @@
-import $ from 'jquery';
+//import $ from 'jquery';
 import angular from 'angular';
 import styles from './main.css';
 import _ from 'lodash';
@@ -28,7 +28,7 @@ shopApp.directive('rdMain',['rsMain','$timeout','eventbus',function(rsMain,$time
 			    </div>
 			    <!-- 手机 -->
 			    <div class="center-phone pull-left">
-				    <div class='phone-style ps-r' ng-style="{height:phoneHeight+'px'}">
+				    <div class='phone-style ps-r'>
 					    <div class="height-100">
 						    <div class="phone-header"></div>
 						    <div class="phone-status"><span class="phone-status-title">微信首页</span></div>
@@ -158,41 +158,44 @@ shopApp.directive('rdMain',['rsMain','$timeout','eventbus',function(rsMain,$time
                 
                 // 设置滚动条到最底部
                 $(document).scrollTop($('.center-phone').get(0).scrollHeight-600);
-                calcPhoneMainHeight();
+                // calcPhoneMainHeight();
             }
 
-         //    rsMain.getJson().then(function(_d){
-        	// 	console.log(_d);
-        	// 	try{
-        	// 		var json = JSON.parse(_d.data.json);
+            rsMain.getJson().then(function(_d){
+            	
+        		console.log(_d);
+        		if(!_d.data) return;
+        		try{
+
+        			var json = JSON.parse(_d.data.Data.TemplateData);
 	        		
-	        // 		$scope.editors = JSON.parse(json.json).editors;
-	        // 		console.log('json:',$scope.editors);
-        	// 	}catch(e){
-        	// 		console.log('没获取到模板数据');
-        	// 	}
+	        		$scope.editors = json.editors;
+	        		console.log('json:',$scope.editors);
+        		}catch(e){
+        			console.log('没获取到模板数据');
+        		}
         		
-        	// });
+        	});
 
-        	$scope.$watch('editors.model',()=>{
-	        	calcPhoneMainHeight();
-        	},true)
+   //      	$scope.$watch('editors.model',()=>{
+	  //       	calcPhoneMainHeight();
+   //      	},true)
 
-        	function calcPhoneMainHeight(){
-        		console.log('计算main高度');
-        		$timeout(function(){
-        			$scope.editors.sort(function(a,b){
-	            		return a.idx - b.idx;
-	            	});
-	        		var _h = $('.phone-style ul').height();
+   //      	function calcPhoneMainHeight(){
+   //      		console.log('计算main高度');
+   //      		$timeout(function(){
+   //      			$scope.editors.sort(function(a,b){
+	  //           		return a.idx - b.idx;
+	  //           	});
+	  //       		var _h = $('.phone-style ul').height();
 
-	        		$scope.phoneHeight = _h>387?_h+223:600;
-        		},0)
-        	}
+	  //       		$scope.phoneHeight = _h>387?_h+223:600;
+   //      		},0)
+   //      	}
 
-        	eventbus.subscribe('calc.phone.main.height',()=>{
-				calcPhoneMainHeight();
-			});
+   //      	eventbus.subscribe('calc.phone.main.height',()=>{
+			// 	calcPhoneMainHeight();
+			// });
 
 
 

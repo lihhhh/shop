@@ -1,7 +1,7 @@
 import angular from 'angular';
 import style from './rd.drag.css';
 import _ from 'lodash';
-import $ from 'jquery';
+//import $ from 'jquery';
 
 
 var shopApp = angular.module('shopApp');
@@ -72,22 +72,26 @@ shopApp.directive('rdDrag',['$timeout','rsCommon','eventbus',function($timeout,r
         				$scope.editor.drag.isDragUp = false;
 
         				if(!excEditor) return;
+        				
         				var excIdx = excEditor.idx;
-        				var dragIdx = $scope.editor.idx;
 
         				$scope.editor.idx = excIdx;
-        				excEditor.idx = dragIdx;
+
+        				$scope.editors.splice($scope.editors.indexOf($scope.editor),1);
+
+        				var endEditors = $scope.editors.slice($scope.editors.indexOf(excEditor));
+
+        				endEditors.map((it,i)=>{
+        					it.idx = excIdx + i + 1;
+        				})
+
+        				$scope.editors.push($scope.editor);
 
         				$scope.editors.sort(function(a,b){
 		            		return a.idx - b.idx;
 		            	});
 
-        				var beforeEditors = $scope.editors.slice($scope.editor.idx);
-
-        				console.log(beforeEditors);
-        				beforeEditors.map((it,i)=>{
-        					it.idx = excIdx + i + 1;
-        				})
+        				
         				$scope.$apply();
         				// $('render').map(function(){$(this).html('')})
         				eventbus.broadcast('render',{});

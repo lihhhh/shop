@@ -7,3 +7,6 @@
 ol {
 	padding-left: 20px;
 }
+
+.edui-container *{-webkit-box-sizing: content-box;-moz-box-sizing: content-box;box-sizing: content-box;}  
+.edui-container *:before,.edui-container *:after {-webkit-box-sizing: content-box;-moz-box-sizing: content-box;box-sizing: content-box;}  

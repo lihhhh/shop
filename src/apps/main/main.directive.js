@@ -87,7 +87,7 @@ shopApp.directive('rdMain',['rsMain','$timeout','eventbus',function(rsMain,$time
 	            },
 	            {
 	                'name': '图片广告',
-	                'type': 'a1'
+	                'type': 'rd-advert'
 	            },{
 	                'name': '分割线',
 	                'type': 'rd-divider'
@@ -158,58 +158,29 @@ shopApp.directive('rdMain',['rsMain','$timeout','eventbus',function(rsMain,$time
                 
                 // 设置滚动条到最底部
                 $(document).scrollTop($('.center-phone').get(0).scrollHeight-600);
-                // calcPhoneMainHeight();
             }
 
             rsMain.getJson().then(function(_d){
-            	
-        		console.log(_d);
-        		if(!_d.data) return;
+        		if(!_d || !_d.data) return;
         		try{
 
         			var json = JSON.parse(_d.data.Data.TemplateData);
 	        		
 	        		$scope.editors = json.editors;
-	        		console.log('json:',$scope.editors);
         		}catch(e){
         			console.log('没获取到模板数据');
         		}
         		
         	});
 
-   //      	$scope.$watch('editors.model',()=>{
-	  //       	calcPhoneMainHeight();
-   //      	},true)
-
-   //      	function calcPhoneMainHeight(){
-   //      		console.log('计算main高度');
-   //      		$timeout(function(){
-   //      			$scope.editors.sort(function(a,b){
-	  //           		return a.idx - b.idx;
-	  //           	});
-	  //       		var _h = $('.phone-style ul').height();
-
-	  //       		$scope.phoneHeight = _h>387?_h+223:600;
-   //      		},0)
-   //      	}
-
-   //      	eventbus.subscribe('calc.phone.main.height',()=>{
-			// 	calcPhoneMainHeight();
-			// });
-
-
-
-
             // 保存json数据
             $scope.saveJson = function(){
             	var params = {
-            		// editors:JSON.stringify($scope.editors)
             		json:{
             			editors:$scope.editors
             		}
             	};
             	rsMain.saveJson(params).then(function(_d){
-            		console.log(_d);
             		alert('保存成功!');
             	});
             };

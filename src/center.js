@@ -1,5 +1,6 @@
 require("./apps/common");
 require("./apps/main");
+require("./apps/rd.advert");
 require("./apps/rd.blankness");
 require("./apps/rd.commodity");
 require("./apps/rd.divider");

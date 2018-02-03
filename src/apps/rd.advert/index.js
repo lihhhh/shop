@@ -22,8 +22,10 @@ shopApp.directive('rdAdvert',['$timeout','rsCommon',function($timeout,rsCommon){
 					<div class="advert-up">
 						<div class="advert-up-one">
 							<span>显示方式：</span>
-							<input class="one-span " type="radio" value="折叠轮播">折叠轮播 &nbsp;&nbsp;&nbsp;&nbsp;
-							<input class="one-span " type="radio" value="分开显示">分开显示
+							<input class="one-span "  id ="advert-up-one-radio" type="radio" ng-checked = "editor.model.adventRadioShow.code==1"  ng-click="adventRadioClick(1,'折叠轮播')" value="折叠轮播">
+							<label class="style-group" for="advert-up-one-radio">折叠轮播</label>
+							<input class="one-span " id="advert-up-one-radio2" type="radio" ng-checked = "editor.model.adventRadioShow.code==2"  ng-click="adventRadioClick(2,'分开显示')" value="分开显示">
+							<label class="style-group" for="advert-up-one-radio2">分开显示</label>
 						</div>
 						<div class="advert-down-two">
 							<span>整体上下留白：</span>
@@ -137,10 +139,28 @@ shopApp.directive('rdAdvert',['$timeout','rsCommon',function($timeout,rsCommon){
 				$scope.editor.model.showSelect=false;
 
 			}
+			// 单选
+			$scope.adventRadio = false;
+			$scope.adventRadioClick = function(code,name){
+				debugger
+				// $scope.adventRadio = true;
+				$scope.editor.model.adventRadioShow = {
+					code:code,
+					name:name
+				};
+			}
+
+
+
 			if(!$scope.editor.model){
+				debugger
 				$scope.editor.model = {
 					textNavDatasDiv:$scope.textNavDatasDiv,
-					showSelect:true
+					showSelect:true,
+					adventRadioShow:{
+						code:1,
+						name:'折叠轮播'
+					}
 				};
 			}
 			
